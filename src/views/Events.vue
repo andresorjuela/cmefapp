@@ -56,15 +56,16 @@ export default {
   display: flex;
   flex-direction: row;
   margin-left: 5vw;
+  align-items: center;
   justify-content: space-between;
 }
 .orantect--logo {
   width: 25%;
-  height: auto;
+  height: 35px;
 }
 .cmef--logo {
   width: 30%;
-  height: auto;
+  height: 46px;
 }
 .card {
   width: 95%;

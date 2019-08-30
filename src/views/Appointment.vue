@@ -161,16 +161,17 @@ export default {
 .logos--row {
   display: flex;
   flex-direction: row;
+  align-items: center;
   margin-left: 5vw;
   justify-content: space-between;
 }
 .orantect--logo {
   width: 25%;
-  height: auto;
+  height: 35px;
 }
 .cmef--logo {
   width: 30%;
-  height: auto;
+  height: 46px;
 }
 .title {
   color: #fff;

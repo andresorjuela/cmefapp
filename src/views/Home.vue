@@ -60,7 +60,7 @@
       </Card>
       <div class="bottom-logos--row">
         <img src="@/assets/images/Medten_logo.jpg" class="Medten--logo" />
-        <img src="@/assets/images/Medten-QR-Wechat.jpg" class="cmef--logo" />
+        <img src="@/assets/images/Medten-QR-Wechat.jpg" class="qr--code" />
       </div>
     </div>
     <div style="padding: 10px;background: #f8f8f9" v-if="!showHome">
@@ -120,7 +120,7 @@ export default {
       this.countryCode = country.callingCodes[0];
       this.country = country.name;
       this.showHome = true;
-    },
+    }
   },
   mounted() {
     this.getALLCountryList();
@@ -144,15 +144,16 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   padding: 3% 5% 3% 12%;
 }
 .orantect--logo {
   width: 25%;
-  height: auto;
+  height: 35px;
 }
 .cmef--logo {
   width: 30%;
-  height: auto;
+  height: 46px;
 }
 .content {
   display: flex;
@@ -169,7 +170,7 @@ export default {
   justify-content: space-between;
   text-align: center;
   align-self: center;
-  padding: 1% 5% 2%  5%;
+  padding: 1% 5% 2% 5%;
 }
 .btn {
   margin-top: 4vh;
@@ -187,6 +188,11 @@ export default {
 }
 .Medten--logo {
   width: 70%;
+  height: 96px;
+}
+.qr--code{
+  width: 30%;
+  height: 96px;
 }
 .success--message {
   color: rgb(236, 102, 8);
