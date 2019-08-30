@@ -153,6 +153,7 @@ export default {
 .row {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: flex-start;
   padding: 3% 5% 3% 5%;
   border-bottom: 1px solid gray;

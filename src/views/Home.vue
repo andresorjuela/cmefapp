@@ -130,13 +130,15 @@ export default {
 <style scoped>
 .home {
   max-width: 600px;
-  height: 100%;
+  height: 100vh;
   margin: auto;
   background-image: url("./../assets/images/landing-left.jpg");
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
   justify-content: flex-start;
+  border: 1px solid lightgray;
 }
 .logos--row {
   display: flex;
@@ -158,15 +160,16 @@ export default {
   justify-content: space-around;
   text-align: center;
   align-self: center;
-  padding: 5% 5%;
+  padding: 2% 5%;
 }
 .btn--content {
-  width: 70%;
+  width: 75%;
+  height: 35vh;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
   align-self: center;
-  padding: 3% 5%;
+  padding: 1% 5% 2%  5%;
 }
 .btn {
   margin-top: 4vh;

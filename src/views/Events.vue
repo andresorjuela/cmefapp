@@ -49,6 +49,7 @@ export default {
   flex-direction: row;
   justify-content: flex-start;
   padding: 3% 5% 3% 5%;
+  align-items: center;
   border-bottom: 1px solid gray;
 }
 .logos--row {
