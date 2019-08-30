@@ -185,9 +185,6 @@ export default {
 .Medten--logo {
   width: 70%;
 }
-.success--box {
-  padding: 2% 10%;
-}
 .success--message {
   color: rgb(236, 102, 8);
 }
