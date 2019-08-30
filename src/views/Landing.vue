@@ -11,9 +11,8 @@ export default {
 </script>
 <style scoped>
 .client {
-  width: 700px;
-  border: 1px solid red;
   margin: auto;
+  overflow-x: hidden;
   height: 100vh;
 }
 </style>
