@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24"  @click="goBack()" />
       <div class="logos--row">
@@ -27,6 +27,17 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  max-width: 600px;
+  height: 100%;
+  margin: auto;
+  border: 1px solid lightgray;
+  background-size: 100% 100%;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+  justify-content: flex-start;
+}
 .content {
   display: flex;
   flex-direction: column;
