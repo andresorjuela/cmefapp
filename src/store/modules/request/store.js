@@ -6,8 +6,7 @@ import * as mutations from './mutations';
 
 Vue.use(Vuex);
 const state = {
-  countryList: [],
-  name: 'Anis',
+  requestList: [],
 };
 export default {
   state,

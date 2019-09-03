@@ -1,6 +1,2 @@
-export const getName = (state) => {
-    return state.name
-}
-export const getCountryList = (state) => {
-    return state.countryList
-}
+export const getName = state => state.name;
+export const getCountryList = state => state.countryList;

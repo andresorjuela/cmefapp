@@ -1,18 +1,19 @@
 <template>
-  <div class="client">
+<div class="client">
     <router-view />
-  </div>
+</div>
 </template>
 
 <script>
 export default {
-  name: "Landing"
+    name: 'Landing',
 };
 </script>
+
 <style scoped>
 .client {
-  margin: auto;
-  overflow-x: hidden;
-  height: 100vh;
+    margin: auto;
+    overflow-x: hidden;
+    height: 100vh;
 }
 </style>

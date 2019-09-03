@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import general from './modules/general/store'
+import general from './modules/general/store';
+import request from './modules/request/store';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -14,6 +16,7 @@ export default new Vuex.Store({
 
   },
   modules: {
-    general
-  }
+    general,
+    request,
+  },
 });

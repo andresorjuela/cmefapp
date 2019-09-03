@@ -5,6 +5,7 @@ import Appointment from './views/Appointment.vue';
 import Products from './views/Products.vue';
 import Events from './views/Events.vue';
 import Landing from './views/Landing.vue';
+import Track from './views/Track.vue';
 
 Vue.use(Router);
 
@@ -36,11 +37,16 @@ export default new Router({
           name: 'Events',
           component: Events,
         },
+        {
+          path: 'Track',
+          name: 'Track',
+          component: Track,
+        },
       ],
     },
     {
       path: '*',
-      redirect: '/'
-    }
+      redirect: '/',
+    },
   ],
 });

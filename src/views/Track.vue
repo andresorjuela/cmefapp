@@ -1,39 +1,16 @@
 <template>
-<section>
-    <div v-if="showHome" class="home">
+<section class="home">
+    <div class="row">
+        <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
         <div class="logos--row">
             <img src="@/assets/images/Orantect-logo.png" class="orantect--logo">
             <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo">
         </div>
-        <div class="content">
-            <h3>Time: 2019.10.19-22</h3>
-            <h3>Hall: 展位号：N3，J01</h3>
-        </div>
-        <div class="btn--content">
-            <div class="btn">
-                <Button type="warning" size="large" long to="/Appointment">
-                    <b>Make Appointment</b>
-                </Button>
-            </div>
-            <div class="btn">
-                <Button type="warning" size="large" long to="/Products">
-                    <b>Products Overview</b>
-                </Button>
-            </div>
-            <div class="btn">
-                <Button type="warning" size="large" long to="/Events">
-                    <b>Events at Orantech</b>
-                </Button>
-            </div>
-            <div class="btn">
-                <Button type="warning" size="large" long to="/track">
-                    <b>Track</b>
-                </Button>
-            </div>
-        </div>
-        <Card class="card">
+    </div>
+    <div class="content">
+        <Card>
             <div style="text-align:center">
-                <h5>Interested in being a distributor？</h5>
+                <h5>Track your request/booking</h5>
                 <Tabs value="name1" @on-click="tabChanged()">
                     <TabPane label="Phone" name="name1">
                         <div v-if="showPhoneErr">
@@ -50,7 +27,7 @@
                         </Input>
                         <div style="margin-top: 2vh">
                             <Button type="success" size="large" @click="submitPhoneRequest">
-                                <b>Submit</b>
+                                <b>Track</b>
                             </Button>
                         </div>
                     </TabPane>
@@ -63,37 +40,18 @@
                         <Input v-model="email" type="email" placeholder="Enter Your Email here" />
                         <div style="margin-top: 2vh">
                             <Button type="success" size="large" @click="submitEmailRequest">
-                                <b>Submit</b>
+                                <b>Track</b>
                             </Button>
                         </div>
                     </TabPane>
                 </Tabs>
             </div>
         </Card>
-        <div class="bottom-logos--row">
-            <img src="@/assets/images/Medten_logo.jpg" class="Medten--logo">
-            <img src="@/assets/images/Medten-QR-Wechat.jpg" class="qr--code">
-        </div>
     </div>
-    <div v-if="!showHome" style="padding: 10px;background: #f8f8f9">
-        <Card title="Options" icon="ios-options" :padding="0" shadow>
-            <CellGroup v-for="(country , index) in countryList" :key="index" @on-click="changeCountry(country)">
-                <Cell :title="country.name" :icon="country.flag" :extra="`+${country.callingCodes[0]}`" />
-            </CellGroup>
-        </Card>
+    <div class="bottom-logos--row">
+        <img src="@/assets/images/Medten_logo.jpg" class="Medten--logo">
+        <img src="@/assets/images/Medten-QR-Wechat.jpg" class="qr--code">
     </div>
-    <Modal v-model="confirmModel" class-name="vertical-center-modal" close>
-        <p slot="header" style="color:green;text-align:center">
-            <Icon type="ios-checkmark-circle" color="green" />
-            <span style="margin-left: 2vw;">Request recived</span>
-        </p>
-        <div style="text-align:center">
-            <h4 class="success--message">
-                Your contacts has been recived. Someone from Orantech will reach to you soon
-            </h4>
-        </div>
-        <div slot="footer" />
-    </Modal>
 </section>
 </template>
 
@@ -104,11 +62,9 @@ import {
 } from 'vuex';
 
 export default {
-    name: 'Home',
+    name: 'Track',
     data() {
         return {
-            showHome: true,
-            confirmModel: false,
             countryCode: '+86',
             country: 'China',
             phone: '',
@@ -126,8 +82,6 @@ export default {
     methods: {
         ...mapActions({
             getALLCountryList: 'getALLCountryList',
-            addNewRequestPhone: 'addNewRequestPhone',
-            addNewRequestEmail: 'addNewRequestEmail',
         }),
         selectCountry() {
             this.showHome = false;
@@ -151,12 +105,8 @@ export default {
                     phone: that.phone,
                     countryCode: that.countryCode,
                 };
-                // that.addNewRequestPhone(data).then((res) => {
-                that.confirmModel = true;
                 that.phone = '';
-                // }).catch(err => {
-                //   this.$Message.error(err.message);
-                // })
+                this.$Message.error('No Such Request');
             }
         },
         submitEmailRequest() {
@@ -170,8 +120,8 @@ export default {
                         email: that.email,
                     };
                     // that.addNewRequestEmail(data).then((res) => {
-                    that.confirmModel = true;
                     that.email = '';
+                    this.$Message.error('No Such Request');
                     // }).catch(err => {
                     //   this.$Message.error(err.message);
                     // })
@@ -184,19 +134,13 @@ export default {
             const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(String(email).toLowerCase());
         },
-    },
-    watch: {
-        phone(newVal) {
-            const that = this;
-            if (newVal != '') {
-                that.showPhoneErr = false;
-            }
+        goBack() {
+            this.$router.go(-1);
         },
-        email(newVal) {
+        tabChanged() {
             const that = this;
-            if (newVal != '') {
-                that.showEmailErr = false;
-            }
+            that.showPhoneErr = false;
+            that.showEmailErr = false;
         },
     },
     mounted() {
@@ -208,23 +152,38 @@ export default {
 <style scoped>
 .home {
     max-width: 600px;
-    height: 100vh;
+    height: 100%;
     margin: auto;
-    background-image: url("./../assets/images/landing-left.jpg");
+    border: 1px solid lightgray;
     background-size: 100% 100%;
     display: flex;
-    flex-direction: column;
     overflow-y: scroll;
+    flex-direction: column;
     justify-content: flex-start;
-    border: 1px solid lightgray;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 2% 2%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 3% 5% 3% 5%;
+    align-items: center;
+    border-bottom: 1px solid gray;
 }
 
 .logos--row {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    margin-left: 5vw;
     align-items: center;
-    padding: 3% 5% 3% 12%;
+    justify-content: space-between;
 }
 
 .orantect--logo {
@@ -238,35 +197,17 @@ export default {
 }
 
 .content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    text-align: center;
-    align-self: center;
-    padding: 1% 5%;
-}
-
-.btn--content {
-    width: 75%;
-    height: 35vh;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    align-self: center;
-    padding: 1% 5% 2% 5%;
-}
-
-.btn {
-    margin-top: 2vh;
+    padding: 2vh 5vw;
 }
 
 .card {
-    width: 70%;
+    width: 95%;
     margin: auto;
 }
 
 .bottom-logos--row {
     bottom: 0;
+    position: fixed;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -281,19 +222,5 @@ export default {
 .qr--code {
     width: 30%;
     height: 96px;
-}
-
-.success--message {
-    color: rgb(236, 102, 8);
-}
-
-.vertical-center-modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.ivu-modal {
-    top: 0;
 }
 </style>
