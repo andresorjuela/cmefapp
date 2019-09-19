@@ -6,10 +6,14 @@ import * as mutations from './mutations';
 
 Vue.use(Vuex);
 const state = {
-  countryList: [],
-  avalDatesList: [],
-  availableTimings: [],
-  name: 'Anis',
+  isLoggedIn: false,
+  admin: {},
+  adminToken: '',
+  adminList: [],
+  dateList: [],
+  requestList: [],
+  appointmentList: [],
+  DBStats:{}
 };
 export default {
   state,

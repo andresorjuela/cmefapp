@@ -1,7 +1,7 @@
 import Api from '@/plugins/API';
 
 export const addNewRequestPhone = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
-  Api().post('/request/add/phone', data).then((res) => {
+  Api().post('/Api/request/add/phone', data).then((res) => {
     if (res.data.status == 200) {
       resolve(res.data);
     } else {
@@ -12,7 +12,7 @@ export const addNewRequestPhone = ({ commit, dispatch }, data) => new Promise((r
   });
 });
 export const addNewRequestEmail = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
-  Api().post('/request/add/email', data).then((res) => {
+  Api().post('/Api/request/add/email', data).then((res) => {
     if (res.data.status == 200) {
       resolve(res.data);
     } else {
