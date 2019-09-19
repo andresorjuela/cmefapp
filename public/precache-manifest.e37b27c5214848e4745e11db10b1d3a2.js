@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/img/Spo2.22d44654.jpg"
   },
   {
-    "revision": "e3443766667860141430b78878ca5477",
+    "revision": "a14306ed85c403ecd5a957522b4f39b1",
     "url": "/index.html"
   },
   {
@@ -32,16 +32,16 @@ self.__precacheManifest = [
     "url": "/img/ionicons.a2c4a261.svg"
   },
   {
-    "revision": "ea60617a44f6f9c3427a",
-    "url": "/js/app.56e8b3a9.js"
+    "revision": "c64b7f2c3f71e85d76fc",
+    "url": "/js/app.0ab57dbe.js"
   },
   {
     "revision": "1764be2ed0f444f4157285a661d42cc9",
     "url": "/img/landing-left.1764be2e.jpg"
   },
   {
-    "revision": "99ac3308dd8ee14f749f51538d0d5b9e",
-    "url": "/fonts/ionicons.99ac3308.woff"
+    "revision": "d535a25a79fb1365ae814b61e88fae71",
+    "url": "/fonts/ionicons.d535a25a.ttf"
   },
   {
     "revision": "6d49ce5897f08c50e67ea4c4343e2d63",
@@ -80,15 +80,15 @@ self.__precacheManifest = [
     "url": "/img/CMEF_logo.a726b98d.jpg"
   },
   {
-    "revision": "d535a25a79fb1365ae814b61e88fae71",
-    "url": "/fonts/ionicons.d535a25a.ttf"
+    "revision": "99ac3308dd8ee14f749f51538d0d5b9e",
+    "url": "/fonts/ionicons.99ac3308.woff"
   },
   {
     "revision": "143146fa24554ae2c5ac0a3982abb952",
     "url": "/fonts/ionicons.143146fa.woff2"
   },
   {
-    "revision": "ea60617a44f6f9c3427a",
+    "revision": "c64b7f2c3f71e85d76fc",
     "url": "/css/app.86a14b22.css"
   }
 ];
