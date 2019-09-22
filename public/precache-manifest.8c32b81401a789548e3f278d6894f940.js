@@ -1,30 +1,30 @@
 self.__precacheManifest = [
   {
-    "revision": "407a6bcc80e789cfb78e765417b6c3e2",
-    "url": "/img/Temperature.407a6bcc.jpg"
+    "revision": "f325e3beb18410e9fa14b85af7abbcd5",
+    "url": "/img/MPC.f325e3be.jpg"
+  },
+  {
+    "revision": "85444602d8a033659c4910ae829ad99a",
+    "url": "/orantect.ico"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
     "url": "/robots.txt"
   },
   {
-    "revision": "d584d86b2d733b3603be7be3e6483a2b",
-    "url": "/img/Medten_logo.d584d86b.jpg"
+    "revision": "4f4721a2add229d23643c7e55c2d2d90",
+    "url": "/img/Medten_logo.4f4721a2.jpg"
+  },
+  {
+    "revision": "286cb74d33309b547c7aec8a49eb8bcd",
+    "url": "/img/Repair_Parts.286cb74d.png"
   },
   {
     "revision": "cd15464d87d18417213a",
     "url": "/js/chunk-vendors.91da8c5e.js"
   },
   {
-    "revision": "f14eae7f5e03647f71ff79884ad46292",
-    "url": "/img/EtCO2.f14eae7f.jpg"
-  },
-  {
-    "revision": "22d44654341c6e3a71b950d22f9b2a43",
-    "url": "/img/Spo2.22d44654.jpg"
-  },
-  {
-    "revision": "a14306ed85c403ecd5a957522b4f39b1",
+    "revision": "72014c5557a297590c66110e7801daf2",
     "url": "/index.html"
   },
   {
@@ -32,12 +32,20 @@ self.__precacheManifest = [
     "url": "/img/ionicons.a2c4a261.svg"
   },
   {
-    "revision": "c64b7f2c3f71e85d76fc",
-    "url": "/js/app.0ab57dbe.js"
+    "revision": "22d44654341c6e3a71b950d22f9b2a43",
+    "url": "/img/Spo2.22d44654.jpg"
   },
   {
-    "revision": "1764be2ed0f444f4157285a661d42cc9",
-    "url": "/img/landing-left.1764be2e.jpg"
+    "revision": "2b6273cccb3c84cfcb15",
+    "url": "/js/app.b206bfad.js"
+  },
+  {
+    "revision": "407a6bcc80e789cfb78e765417b6c3e2",
+    "url": "/img/Temperature.407a6bcc.jpg"
+  },
+  {
+    "revision": "cf97b15544ea9afbc4ee43e0f026d2df",
+    "url": "/img/Vet.cf97b155.jpg"
   },
   {
     "revision": "d535a25a79fb1365ae814b61e88fae71",
@@ -48,12 +56,12 @@ self.__precacheManifest = [
     "url": "/img/EKG.6d49ce58.jpg"
   },
   {
-    "revision": "1bb72b7a89c9e63700b0a2660db7e276",
-    "url": "/img/Orantect-logo.1bb72b7a.png"
-  },
-  {
     "revision": "0da38e0ff97c0089ed422c02fd82d5b3",
     "url": "/img/Fetal.0da38e0f.jpg"
+  },
+  {
+    "revision": "f14eae7f5e03647f71ff79884ad46292",
+    "url": "/img/EtCO2.f14eae7f.jpg"
   },
   {
     "revision": "58cb5cb42559f4b5f7a93a6f794fefa9",
@@ -64,12 +72,16 @@ self.__precacheManifest = [
     "url": "/img/O2.8da68f39.jpg"
   },
   {
+    "revision": "887f6172ac1c56565b88999fc50ae426",
+    "url": "/img/Medten-QR-Wechat.887f6172.jpg"
+  },
+  {
     "revision": "e7df79e4aa777bd90e01bf61acee61c6",
     "url": "/img/IBP.e7df79e4.jpg"
   },
   {
-    "revision": "887f6172ac1c56565b88999fc50ae426",
-    "url": "/img/Medten-QR-Wechat.887f6172.jpg"
+    "revision": "891ee0c22afb1dbc7a3cf8173275d7cf",
+    "url": "/img/Orantech_Logo.891ee0c2.gif"
   },
   {
     "revision": "eb9c0f9e4a63c04ffac2a49ae7792ff8",
@@ -88,7 +100,7 @@ self.__precacheManifest = [
     "url": "/fonts/ionicons.143146fa.woff2"
   },
   {
-    "revision": "c64b7f2c3f71e85d76fc",
-    "url": "/css/app.86a14b22.css"
+    "revision": "2b6273cccb3c84cfcb15",
+    "url": "/css/app.e26aa25e.css"
   }
 ];

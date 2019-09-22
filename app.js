@@ -10,6 +10,7 @@ var requestRouter = require('./routes/request');
 var appointRouter = require('./routes/appointment');
 var adminRouter = require('./routes/admin');
 var productRouter = require('./routes/product');
+var eventRouter = require('./routes/event');
 
 //database setting
 require('./config/database')
@@ -29,6 +30,7 @@ app.use('/Api/request', requestRouter);
 app.use('/Api/appointment', appointRouter);
 app.use('/Api/product', productRouter);
 app.use('/Api/admin', adminRouter);
+app.use('/Api/event', eventRouter);
 
 app.use(express.static(__dirname + '/public/'));
 

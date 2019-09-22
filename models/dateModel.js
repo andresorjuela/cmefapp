@@ -22,6 +22,11 @@ const dateSchema = new Schema({
         type: Boolean,
         default: true,
     },
+    appointmentCount: {
+        required: true,
+        type: Number,
+        default: 0
+    },
     timing: [{
         time: {},
         isAvailable: {},

@@ -46,110 +46,66 @@ router.post('/makeAppointment', function (req, res, next) {
               message: 'Invalid Date'
             })
           } else {
-            var currentTiming = record.timing.find(function (element) {
-              return element._id == timeId;
-            });
-            if (currentTiming) {
-              let updatedTiming = record.timing.map(item => {
-                if (item._id == timeId) {
-                  if (item.isAvailable && item.booking < 2) {
-                    item.booking_list.push(new_appointment.id)
-                    item.booking++
-                    if (item.booking == 2) {
-                      item.isAvailable = false
+            let appointmentCount = record.appointmentCount
+            if(appointmentCount < 18){
+              var currentTiming = record.timing.find(function (element) {
+                return element._id == timeId;
+              });
+              if (currentTiming) {
+                let updatedTiming = record.timing.map(item => {
+                  if (item._id == timeId) {
+                    if (item.isAvailable && item.booking < 2) {
+                      item.booking_list.push(new_appointment.id)
+                      item.booking++
+                      if (item.booking == 2) {
+                        item.isAvailable = false
+                      }
+                      return item
+                    } else {
+                      res.json({
+                        status: 1030,
+                        message: 'Both Slot Booked'
+                      })
                     }
-                    return item
                   } else {
-                    res.json({
-                      status: 1030,
-                      message: 'Both Slot Booked'
+                    return item
+                  }
+                })
+                let new_count = record.appointmentCount+1
+                dateCollection.findOneAndUpdate({ date: date }, {
+                  "$set": {
+                    "appointmentCount":new_count,
+                    "timing": updatedTiming
+                  }
+                }, function (err, doc) {
+                  if (err) {
+                    res.json(err)
+                  } else {
+                    new_appointment.save(() => {
+                      res.json({
+                        status: 200,
+                        message: 'Booking Confirmed'
+                      })
                     })
                   }
-                } else {
-                  return item
                 }
-              })
-              dateCollection.findOneAndUpdate({ date: date }, {
-                "$set": {
-                  "timing": updatedTiming
-                }
-              }, function (err, doc) {
-                if (err) {
-                  res.json(err)
-                } else {
-                  new_appointment.save(() => {
-                    res.json({
-                      status: 200,
-                      message: 'Booking Confirmed'
-                    })
-                  })
-                }
+                );
+              } else {
+                res.json({
+                  status: 1030,
+                  message: "invalid Time Slot"
+                })
               }
-              );
-            } else {
+            }else{
               res.json({
                 status: 1030,
-                message: "invalid Time Slot"
+                message: "All Slots Booked"
               })
             }
-            // record.timing.map(item => {
-            //   console.log(item._id, timeId , item._id == timeId)
-            //   if (item._id == timeId) {
-            //     console.log(item)
-            //     if (item.isAvailable && item.booking < 2) {
-            //       item.booking++
-            //       if (item.booking == 2) {
-            //         item.isAvailable = false
-            //       }
-            //       dateCollection.findOneAndUpdate({ date: date, "timing._id": timeId },{
-            //           "$set": {
-            //             "timing.isAvailable": item.isAvailable,
-            //             "timing.booking": item.booking,
-            //           }},function (err, doc) {
-            //             if(err){
-            //               res.json(err)
-            //             }else{
-            //               res.json(doc)
-            //             }
-            //         }
-            //       );
-            //       // record.save(function(err){
-            //       //   if(err){
-            //       //     res.json(err)
-            //       //   }else{
-            //       //     new_appointment.save(() => {
-            //       //           res.json({
-            //       //             status: 200,
-            //       //             message: 'Booking Confirmed'
-            //       //           })
-            //       //         })
-            //       //   }
-            //       // })
-            //     } else {
-            //       res.json({
-            //         status: 1030,
-            //         message: 'No Slot available'
-            //       })
-            //     }
-            //   }
-            // });
           }
         }).catch((e) => {
           return Promise.reject(e)
         })
-        // dateCollection.updateAvailability(date , time, new_appointment._id).then((resp)=>{
-        //   new_appointment.save(() => {
-        //     res.json({
-        //       status: 200,
-        //       message: 'Booking Confirmed'
-        //     })
-        //   })
-        // }).catch((err) => {
-        //   res.json({
-        //     status: 401,
-        //     message: err
-        //   })
-        // })
       } else {
         res.json({
           status: 1001,
@@ -160,5 +116,24 @@ router.post('/makeAppointment', function (req, res, next) {
   }
 })
 
+router.post('/bytime', function (req, res, next) {
+  if(!req.body.date || !req.body.time){
+    res.json({
+      status: 1000,
+      message: 'Invalid parameters'
+    })
+  }else{ 
+    appointCollection.find({date: req.body.date, time: req.body.time}, function (err, list) {
+    if (err) {
+      res.json(err)
+    } else {
+      res.json({
+        status: 200,
+        appointments: list
+      })
+    }
+  })
+  }
+});
 
 module.exports = router;

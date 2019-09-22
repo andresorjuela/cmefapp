@@ -2,15 +2,15 @@ var express = require('express');
 var router = express.Router();
 const dateCollection = require('../models/dateModel')
 const appointCollection = require('../models/appointModel')
-const productCollection = require('../models/productModel')
 const requestCollection = require('../models/requestModel')
 const adminCollection = require('../models/adminModel')
+const eventCollection = require('../models/eventModel')
 
 router.get('/getAllDates', function (req, res, next) {
-  dateCollection.find({} , function(err , list){
-    if(err){
+  dateCollection.find({}, function (err, list) {
+    if (err) {
       res.json(err)
-    }else{
+    } else {
       res.json({
         status: 200,
         list: list
@@ -19,11 +19,31 @@ router.get('/getAllDates', function (req, res, next) {
   })
 });
 
+router.post('/singleDate', function (req, res, next) {
+  if (!req.body.date) {
+    res.json({
+      status: 1000,
+      message: 'Invalid parameters'
+    })
+  } else {
+    dateCollection.findOne({ date: req.body.date }, function (err, date) {
+      if (err) {
+        res.json(err)
+      } else {
+        res.json({
+          status: 200,
+          date: date
+        })
+      }
+    })
+  }
+})
+
 router.get('/getActiveDates', function (req, res, next) {
-  dateCollection.find({isActive: true} , function(err , list){
-    if(err){
+  dateCollection.find({ isActive: true }, function (err, list) {
+    if (err) {
       res.json(err)
-    }else{
+    } else {
       res.json({
         status: 200,
         list: list
@@ -33,10 +53,10 @@ router.get('/getActiveDates', function (req, res, next) {
 });
 
 router.get('/getAvailabeDates', function (req, res, next) {
-  dateCollection.find({isActive: true, isAvailable: true} , function(err , list){
-    if(err){
+  dateCollection.find({ isActive: true, isAvailable: true }, function (err, list) {
+    if (err) {
       res.json(err)
-    }else{
+    } else {
       res.json({
         status: 200,
         list: list
@@ -45,25 +65,31 @@ router.get('/getAvailabeDates', function (req, res, next) {
   })
 });
 
-router.post('/timing' , function(req  , res , next) {
-  if(!req.body.date){
+router.post('/timing', function (req, res, next) {
+  if (!req.body.date) {
     res.json({
       status: 1000,
       message: 'Invalid parameters'
     })
-  }else{
-    dateCollection.findOne({date: req.body.date} , function(err , date){
-      if(err){
+  } else {
+    dateCollection.findOne({ date: req.body.date }, function (err, date) {
+      if (err) {
         res.json(err)
-      }else{
+      } else {
         let timing = []
         console.log(date)
         date.timing.forEach((item) => {
-          console.log(item.time , item.isAvailable && item.booking < 2)
-          if(item.isAvailable && item.booking < 2){
+          if (item.isAvailable && item.booking < 2) {
             timing.push({
               value: item._id,
-              label: item.time
+              label: item.time,
+              disabled: false
+            })
+          }else{
+            timing.push({
+              value: item._id,
+              label: item.time,
+              disabled: true
             })
           }
         })
@@ -76,25 +102,25 @@ router.post('/timing' , function(req  , res , next) {
   }
 })
 
-router.post('/addNewDate' , function(req , res , next){
-  if(!req.body.date){
+router.post('/addNewDate', function (req, res, next) {
+  if (!req.body.date) {
     res.json({
       status: 1000,
       message: 'Invalid parameters'
     })
-  }else{
+  } else {
     let date = req.body.date
-    dateCollection.findOne({date} , function(err , data){
-      if(err){
+    dateCollection.findOne({ date }, function (err, data) {
+      if (err) {
         console.log(err)
         res.json(err)
-      }else{
-        if(data !== null){
+      } else {
+        if (data !== null) {
           res.json({
             status: 1001,
             message: 'Date Already registered'
           })
-        }else{
+        } else {
           let new_date = new dateCollection({
             createdOn: Date.now(),
             date
@@ -116,16 +142,16 @@ router.post('/addNewDate' , function(req , res , next){
 
 
 router.post('/updateDate', function (req, res, next) {
-  if(!req.body.id){
+  if (!req.body.id) {
     res.json({
       status: 1000,
       message: 'Invalid parameters'
     })
-  }else{
-    dateCollection.findOneAndUpdate({ _id: req.body.id }, {isActive:req.body.status}, function(err , list){
-      if(err){
+  } else {
+    dateCollection.findOneAndUpdate({ _id: req.body.id }, { isActive: req.body.status }, function (err, list) {
+      if (err) {
         res.json(err)
-      }else{
+      } else {
         res.json({
           status: 200,
           message: 'Date Updated'
@@ -136,19 +162,34 @@ router.post('/updateDate', function (req, res, next) {
 });
 
 router.post('/deleteDate', function (req, res, next) {
-  if(!req.body.id){
+  if (!req.body.date) {
     res.json({
       status: 1000,
       message: 'Invalid parameters'
     })
-  }else{
-    dateCollection.findOneAndRemove({_id: req.body.id} , function(err ){
-      if(err){
+  } else {
+    //delete all apointments
+    appointCollection.deleteMany({ date: req.body.date }, function (err) {
+      if (err) {
         res.json(err)
-      }else{
-        res.json({
-          status: 200,
-          message: 'Date Deleted'
+      } else {
+        //delete events 
+        eventCollection.deleteMany({ date: req.body.date }, function (err) {
+          if (err) {
+            res.json(err)
+          } else {
+            //delete date 
+            dateCollection.findOneAndRemove({ date: req.body.date }, function (err) {
+              if (err) {
+                res.json(err)
+              } else {
+                res.json({
+                  status: 200,
+                  message: 'Date Deleted'
+                })
+              }
+            })
+          }
         })
       }
     })
@@ -157,30 +198,33 @@ router.post('/deleteDate', function (req, res, next) {
 
 /* Get DB States */
 
-router.get('/getStates', function(req , res , next) {
-  dateCollection.count(function(err, totalDates) {
-    dateCollection.count({isActive: true},function(err, activeDates) {
-      dateCollection.count({isActive: true , isAvailable: true},function(err, availableDates) {
-        adminCollection.count(function(err, totalAdmin) {
-          requestCollection.count(function(err, totalRequest) {
-            requestCollection.count({status: 'recived'},function(err, newRequest) {
-              requestCollection.count({status: 'inprogress'},function(err, activeRequest) {
-                requestCollection.count({status: 'completed'},function(err, completedRequest) {
-                  appointCollection.count(function(err, totalAppointments) {
-                    res.json({
-                      status: 200,
-                      stats: {
-                        totalDates,
-                        activeDates,
-                        availableDates,
-                        totalAdmin,
-                        totalRequest,
-                        newRequest,
-                        activeRequest,
-                        completedRequest,
-                        totalAppointments
-                      }
-                    })
+router.get('/getStates', function (req, res, next) {
+  dateCollection.count(function (err, totalDates) {
+    dateCollection.count({ isActive: true }, function (err, activeDates) {
+      dateCollection.count({ isActive: true, isAvailable: true }, function (err, availableDates) {
+        adminCollection.count(function (err, totalAdmin) {
+          requestCollection.count(function (err, totalRequest) {
+            requestCollection.count({ status: 'recived' }, function (err, newRequest) {
+              requestCollection.count({ status: 'inprogress' }, function (err, activeRequest) {
+                requestCollection.count({ status: 'completed' }, function (err, completedRequest) {
+                  appointCollection.count(function (err, totalAppointments) {
+                    eventCollection.count(function (err, totalEvents) {
+                      res.json({
+                        status: 200,
+                        stats: {
+                          totalDates,
+                          activeDates,
+                          availableDates,
+                          totalAdmin,
+                          totalRequest,
+                          newRequest,
+                          activeRequest,
+                          completedRequest,
+                          totalAppointments,
+                          totalEvents
+                        }
+                      })
+                    });
                   });
                 });
               });
