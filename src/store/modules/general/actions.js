@@ -17,16 +17,22 @@ export const getALLCountryList = ({ commit, dispatch }) => {
 };
 
 /** date related API calles for client side */
-export const getActiveDates = ({ commit, dispatch }) => new Promise((resolve, reject) => {
+export const getAvailabeDates = ({ commit, dispatch }) => new Promise((resolve, reject) => {
   Api().get('/Api/getAvailabeDates').then((res) => {
     if (res.data.status == 200) {
       const dateList = res.data.list
       if (dateList.length > 0) {
         let activeDates = []
         dateList.forEach((date) => {
+          if(date.appointmentCount < 18){
+            date.disabled = false
+          }else{
+            date.disabled = true
+          }
           activeDates.push({
             value: date.date,
             label: date.date,
+            disabled: date.disabled
           })
         })
         commit('SET_AVALABLE_LIST', activeDates)

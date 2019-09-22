@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import store from './store/store'
-
-
+import iView from 'iview'
+Vue.use(iView)
 // views
 import Home from './views/Home.vue';
 import Appointment from './views/Appointment.vue';
@@ -19,7 +19,8 @@ import schedule from './components/schedule.vue';
 import requests from './components/request.vue';
 import admin from './components/admin.vue';
 import events from './components/events.vue';
-import appointmentList from './components/appointmentList.vue';
+// import appointmentList from './components/appointmentList.vue';
+import date from './components/date.vue';
 
 Vue.use(Router);
 
@@ -79,11 +80,18 @@ const router = new Router({
               path: 'date',
               name: 'schedule',
               component: schedule,
-            },{
-              path: 'appointmentList',
-              name: 'booking',
-              component: appointmentList,
-            },{
+            },
+            {
+              path: '/date/:date',
+              name: 'date',
+              component: date,
+            },
+            // {
+            //   path: 'appointmentList',
+            //   name: 'booking',
+            //   component: appointmentList,
+            // },
+            {
               path: 'events',
               name: 'events',
               component: events,
@@ -115,5 +123,14 @@ function requireAuth(to, from, next) {
     next()
   }
 }
+
+router.beforeEach((to, from, next) => {
+  iView.LoadingBar.start();
+  next();
+});
+
+router.afterEach(route => {
+  iView.LoadingBar.finish();
+});
 
 export default router

@@ -6,3 +6,6 @@ export const getCurrentAdmin = state => state.admin
 export const getLoginStatus = state => state.isLoggedIn
 export const getAdminToken = state => state.adminToken
 export const getDBStates = state => state.DBStats
+export const getDateTiming = state => state.dateTiming
+export const getDateInfo = state => state.dateInfo
+export const getEventList = state => state.eventList

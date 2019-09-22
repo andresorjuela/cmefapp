@@ -194,6 +194,60 @@ export const deleteDate = ({ commit, dispatch }, data) => new Promise((resolve, 
   });
 });
 
+export const getActiveDates = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
+  Api().get('/Api/getActiveDates', data).then((res) => {
+    if (res.data.status == 200) {
+      resolve(res.data.list);
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
+export const getSingleDate = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
+  Api().post('/Api/singleDate', data).then((res) => {
+    if (res.data.status == 200) {
+      // dispatch('getAllDates')
+      let date = res.data.date
+      var appointments = [];
+          //iterate through object keys
+          Object.keys(date.timing).forEach(function (key) {
+            //get the value of name
+            var val = date.timing[key]["booking"];
+            appointments.push(val);
+          });
+          //get total bookings
+          date.totalAppointmentSlots = appointments.length * 2
+          date.bookedSlots = appointments.reduce((a, b) => a + b, 0)
+          date.remainingSlots = date.totalAppointmentSlots - date.bookedSlots
+          
+      commit('SET_DATE_INFO', [{
+        totalAppointmentSlots: date.totalAppointmentSlots,
+        bookedSlots: date.bookedSlots,
+        remainingSlots: date.remainingSlots,
+        date: date.date
+      }])
+      date.timing.forEach(function(time){
+        if(time.booking == 0){
+          time.color = 'green'
+        }else if(time.booking == 1){
+          time.color = 'blue'
+        }else{
+          time.color = 'red'
+        }
+      })
+      commit('SET_DATE_TIMING', date.timing)
+      resolve(res.data);
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
 export const updateDate = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
   Api().post('/Api/updateDate', data).then((res) => {
     if (res.data.status == 200) {
@@ -206,3 +260,53 @@ export const updateDate = ({ commit, dispatch }, data) => new Promise((resolve, 
     reject(err);
   });
 });
+
+export const filterAppointments = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
+  Api().post('/Api/appointment/bytime', data).then((res) => {
+    if (res.data.status == 200) {
+      resolve(res.data);
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+/** Event related API calles */
+export const getALLEvents = ({ commit, dispatch }) => new Promise((resolve, reject) => {
+  Api().get('/Api/event/list').then((res) => {
+    if (res.data.status == 200) {
+      let events = res.data.list
+      commit('SET_EVENT_LIST' , events)
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
+export const addNewEvent = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
+  Api().post('/Api/event/addEvent', data).then((res) => {
+    if (res.data.status == 200) {
+      resolve(res.data);
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
+export const deleteEvent = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
+  Api().post('/Api/event/delete', data).then((res) => {
+    if (res.data.status == 200) {
+      resolve(res.data);
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+

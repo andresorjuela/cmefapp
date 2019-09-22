@@ -28,9 +28,9 @@
           <MenuItem name="1"  to="/admin/date">
             <Icon type="ios-calendar-outline" />Date Managment
           </MenuItem>
-          <MenuItem name="2"  to="/admin/appointmentList">
+          <!-- <MenuItem name="2"  to="/admin/appointmentList">
             <Icon type="ios-clock-outline" />Appointments
-          </MenuItem>
+          </MenuItem> -->
           <MenuItem name="3"  to="/admin/requests">
             <Icon type="ios-fastforward-outline" />Request's
           </MenuItem>

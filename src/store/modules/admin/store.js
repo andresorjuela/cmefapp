@@ -13,7 +13,10 @@ const state = {
   dateList: [],
   requestList: [],
   appointmentList: [],
-  DBStats:{}
+  DBStats:{},
+  dateInfo: [],
+  dateTiming: [],
+  eventList: []
 };
 export default {
   state,

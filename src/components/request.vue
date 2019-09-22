@@ -110,8 +110,13 @@ export default {
     }),
     update(index) {
       let that = this;
-      that.currentRequest = that.requestList[index];
+      let currentRequest = that.requestList[index];
+      if(currentRequest.status !== 'completed'){
+      that.currentRequest = currentRequest
       that.updateRequestModel = true;
+      }else{
+          this.$Message.info('Cannot update completed request');
+      }
     },
     updateStatus() {
       let that = this;

@@ -28,5 +28,15 @@ export const SET_APPOINTMENT_LIST = (state, list) => {
 export const SET_DB_STATES = (state, stats) => {
   state.DBStats = stats;
 };
+export const SET_DATE_INFO = (state, info) => {
+  state.dateInfo = info;
+};
+export const SET_DATE_TIMING = (state, timing) => {
+  state.dateTiming = timing;
+};
+
+export const SET_EVENT_LIST = (state, list) => {
+  state.eventList = list;
+};
 
 

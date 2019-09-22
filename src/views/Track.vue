@@ -3,7 +3,7 @@
     <div class="row">
         <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
         <div class="logos--row">
-            <img src="@/assets/images/Orantect-logo.png" class="orantect--logo">
+            <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo">
             <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo">
         </div>
     </div>

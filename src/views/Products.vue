@@ -3,7 +3,7 @@
     <div class="row">
         <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
         <div class="logos--row">
-            <img src="@/assets/images/Orantect-logo.png" class="orantect--logo">
+            <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo">
             <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo">
         </div>
     </div>
@@ -24,33 +24,42 @@ export default {
     data() {
         return {
             products: [{
-                name: 'Spo2',
+                name: '血氧',
                 pic: require('./../assets/images/Spo2.jpg'),
             }, {
-                name: 'ECG',
+                name: '监护心电',
                 pic: require('./../assets/images/ECG.jpg'),
             }, {
-                name: 'NIBP',
+                name: '无创血压',
                 pic: require('./../assets/images/NIBP.jpg'),
             }, {
-                name: 'Temperature',
+                name: '体温',
                 pic: require('./../assets/images/Temperature.jpg'),
             }, {
-                name: 'EKG',
+                name: '诊断心电',
                 pic: require('./../assets/images/EKG.jpg'),
             }, {
-                name: 'IBP',
+                name: '有创压',
                 pic: require('./../assets/images/IBP.jpg'),
             }, {
-                name: 'Fetus',
+                name: '胎监',
                 pic: require('./../assets/images/Fetal.jpg'),
             }, {
-                name: 'O2',
+                name: '氧气',
                 pic: require('./../assets/images/O2.jpg'),
             }, {
-                name: 'EtCO2',
+                name: '二氧化碳',
                 pic: require('./../assets/images/EtCO2.jpg'),
-            }, ],
+            },  {
+                name: '多参数',
+                pic: require('./../assets/images/MPC.jpg'),
+            }, {
+                name: '维修部件',
+                pic: require('./../assets/images/Repair_Parts.png'),
+            }, {
+                name: '动物',
+                pic: require('./../assets/images/Vet.jpg'),
+            }],
         };
     },
     methods: {
@@ -99,15 +108,14 @@ export default {
 }
 
 .orantect--logo {
-    width: 25%;
-    height: 35px;
+  width: 50%;
+  height: 35px;
 }
 
 .cmef--logo {
-    width: 30%;
-    height: 46px;
+  width: 45%;
+  height: 46px;
 }
-
 .card {
     width: 95%;
     margin: auto;
