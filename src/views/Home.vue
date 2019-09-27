@@ -11,7 +11,7 @@
       <div class="btn--content">
         <div class="btn">
           <Button type="warning" long to="/Appointment">
-            <h1 class="btnTitle">合作预约洽谈</h1>
+            <h1 class="btnTitle">现场活动</h1>
           </Button>
         </div>
         <div class="btn">
@@ -24,15 +24,20 @@
             <h1 class="btnTitle">活动</h1>
           </Button>
         </div>
+        <div class="btn">
+          <Button type="warning" long>
+            <h1 class="btnTitle">企业介绍</h1>
+          </Button>
+        </div>
       </div>
       <Card class="card" style="background-color: #47C2D1; color: #fff">
-        <div style="text-align: center">
-          <h3>有兴趣成为我们的经销商吗?</h3>
+        <div class="reqText">
+          <h2>有兴趣成为我们的经销商吗?</h2>
         </div>
         <Tabs type="card" value="name1" @on-click="tabChanged()">
           <TabPane label="Phone" name="name1">
             <div v-if="showPhoneErr">
-              <Alert type="error">Invalid Phone Number</Alert>
+              <Alert type="error">无效的手机号码</Alert>
             </div>
             <div class="row">
               <Input
@@ -51,21 +56,21 @@
                 </Select>
               </Input>
               <div style="margin-left: 2vw;">
-                <Button type="info" size="large" @click="submitPhoneRequest">
-                  <b>提交</b>
+                <Button type="warning" size="large" @click="submitPhoneRequest">
+                  <b class="btnTitle">提交</b>
                 </Button>
               </div>
             </div>
           </TabPane>
           <TabPane label="Email" name="name2">
             <div v-if="showEmailErr">
-              <Alert type="error">Invalid Email Address</Alert>
+              <Alert type="error">无效的电子邮箱</Alert>
             </div>
             <div class="row">
               <Input v-model="email" type="email" placeholder="请留下您的手机号" />
               <div style="margin-left: 2vw;">
-                <Button type="info" size="large" @click="submitEmailRequest">
-                  <b>提交</b>
+                <Button type="warning" size="large" @click="submitEmailRequest">
+                  <b class="btnTitle">提交</b>
                 </Button>
               </div>
             </div>
@@ -91,12 +96,12 @@
     <Modal v-model="confirmModel" class-name="vertical-center-modal" close>
       <p slot="header" style="color:green;text-align:center">
         <Icon type="ios-checkmark-circle" color="green" />
-        <span style="margin-left: 2vw;">Request recived</span>
+        <span style="margin-left: 2vw;">请求已接收</span>
       </p>
       <div style="text-align:center">
         <h4
           class="success--message"
-        >Your contacts has been recived. Someone from Orantech will reach to you soon</h4>
+        >已收到您的联系方式。稍微会有橙汇的工作人员联系您。</h4>
       </div>
       <div slot="footer" />
     </Modal>
@@ -185,7 +190,7 @@ export default {
               this.$Message.error(err.message)
             })
         } else {
-          this.$Message.error('Invalid Email')
+          this.$Message.error('请求已接收')
         }
       }
     },
@@ -257,7 +262,7 @@ export default {
 
 .btn--content {
   width: 95%;
-  height: 35vh;
+  height: 38vh;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
@@ -266,7 +271,7 @@ export default {
 }
 
 .btn {
-  margin-top: 2vh;
+  margin-top: 1vh;
 }
 
 .card {
@@ -312,9 +317,13 @@ export default {
   justify-content: space-between;
 }
 .btnTitle{
-  color: #050001;
+  color:#6f6f6f;
 }
 .ivu-tabs-nav {
   color: #fff;
+}
+.reqText{
+  text-align: center;
+  padding: 1px 1px 2vh 1px;
 }
 </style>

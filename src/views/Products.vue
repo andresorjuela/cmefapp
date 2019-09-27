@@ -58,7 +58,7 @@ export default {
                 pic: require('./../assets/images/Repair_Parts.png'),
             }, {
                 name: '动物',
-                pic: require('./../assets/images/Vet.jpg'),
+                pic: require('./../assets/images/VET.jpg'),
             }],
         };
     },

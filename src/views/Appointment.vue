@@ -13,7 +13,7 @@
           <h4>请选择日期</h4>
           <Select
             v-model="date"
-            placeholder="Please Select a date"
+            placeholder="时间"
             prefix="ios-calendar-outline"
             style="width:100%; margin-top: 1vh;"
           >
@@ -31,7 +31,7 @@
           <h4>请选择时间</h4>
           <Select
             v-model="timeId"
-            placeholder="Please Select a Time"
+            placeholder="时间"
             prefix="ios-time-outline"
             style="width:100%; margin-top: 1vh;"
           >
@@ -55,8 +55,7 @@
           <Input v-model="contact" prefix="ios-mail" placeholder="邮箱/手机号" size="large" />
         </div>
         <p
-          class="info"
-        >If you submitted your email we will contact you via email, if you submit your phone (please include country code) we will contact you through a text message.</p>
+          class="info">如果您提交的是您的电子邮箱，我们会通过电子邮箱联系您。如果您提交的您的手机号（请加上您的国家区号），我们会通过短信联系您。</p>
         <div style="margin-top: 1vh">
           <Button type="success" long @click="confimBooking">
             <b>预约</b>
@@ -67,22 +66,22 @@
     <div class="content" v-if="!canBookAppointment">
       <Alert
         type="warning"
-      >All Slots for Appointment are boooked and we don't have any empty slot for booking.</Alert>
+      >所有的预约时段都已订满，我们没有空余的预约时段。</Alert>
     </div>
     <Modal v-model="bookingModel" class-name="vertical-center-modal">
       <p slot="header" style="color:green;text-align:center">
         <Icon type="ios-checkmark-circle" color="green" />
-        <span style="margin-left: 2vw;">Booking recived</span>
+        <span style="margin-left: 2vw;">预定已接收</span>
       </p>
       <div>
         <h3
           class="success--message"
         >您已经预定成功！稍后会有我们公司的专员联系您</h3>
         <CellGroup>
-          <Cell title="Appointment details" />
+          <Cell title="预约细节" />
           <Cell title="邮箱/手机号" :extra="contact" />
-          <Cell title="Date" :extra="date" />
-          <Cell title="Time" :extra="time" />
+          <Cell title="日期" :extra="date" />
+          <Cell title="时间" :extra="time" />
         </CellGroup>
       </div>
       <div slot="footer">
@@ -126,15 +125,15 @@ export default {
     confimBooking() {
       const that = this
        if (!that.date || that.date == '') {
-        this.$Message.error('Date Required')
+        this.$Message.error('日期（必填）')
       } else  if (!that.time || that.time == '') {
-        this.$Message.error('Time Required')
+        this.$Message.error('时间（必填)')
       } else  if (!that.fname || that.fname == '') {
-        this.$Message.error('First Name Required')
+        this.$Message.error('名 （必填）')
       } else if (!that.lname || that.lname == '') {
-        this.$Message.error('Last Name Required')
+        this.$Message.error('姓 （必填）')
       } else if (!that.contact || that.contact == '') {
-        this.$Message.error('Contact Required')
+        this.$Message.error('联系方式 （必填）')
       } else {
         let data = {
           fname: that.fname,

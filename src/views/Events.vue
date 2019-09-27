@@ -21,7 +21,7 @@
       </Row>
     </div>
     <div class="content" v-if="eventList.length  == 0">
-      <Alert type="warning">No Active Event</Alert>
+      <Alert type="warning">无活动事件</Alert>
     </div>
   </section>
 </template>
