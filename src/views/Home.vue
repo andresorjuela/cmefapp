@@ -24,9 +24,9 @@
             <h1 class="btnTitle">活动</h1>
           </Button>
         </div>
-        <div class="btn">
-          <Button type="warning" long>
-            <h1 class="btnTitle">企业介绍</h1>
+        <div class="btn" v-if="showVideoButton">
+          <Button type="warning" long @click="showVideoModel">
+            <h1 class="btnTitle" >企业介绍</h1>
           </Button>
         </div>
       </div>
@@ -45,8 +45,8 @@
                 size="large"
                 type="number"
                 placeholder="请留下您的手机号"
-              >
-                <Select
+               />
+                <!-- <Select
                   slot="prepend"
                   v-model="countryCode"
                   style="width: 80px"
@@ -54,7 +54,7 @@
                 >
                   <Option :value="countryCode">{{ country }}</Option>
                 </Select>
-              </Input>
+              </Input> -->
               <div style="margin-left: 2vw;">
                 <Button type="warning" size="large" @click="submitPhoneRequest">
                   <b class="btnTitle">提交</b>
@@ -105,6 +105,25 @@
       </div>
       <div slot="footer" />
     </Modal>
+    <Modal
+        v-model="videoModel"
+        title="企业介绍"
+        cancel-text=' '
+        ok-text="关"
+        @on-ok="videoModel = false"
+        @on-cancel="videoModel = false">
+        <video controls width="100%">
+
+    <source src="https://www.youtube.com/watch?v=XgnUD4stogY&feature=youtu.be"
+            type="video/webm">
+
+    <source src="https://www.youtube.com/watch?v=XgnUD4stogY&feature=youtu.be"
+            type="video/mp4">
+
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
+    </Modal>
   </section>
 </template>
 
@@ -117,7 +136,8 @@ export default {
     return {
       showHome: true,
       confirmModel: false,
-      countryCode: '+86',
+      videoModel: false,
+      // countryCode: '+86',
       country: 'China',
       phone: '',
       showPhoneErr: false,
@@ -128,23 +148,25 @@ export default {
   },
   computed: {
     ...mapGetters({
-      countryList: 'getCountryList'
+      countryList: 'getCountryList',
+      showVideoButton: 'getVideoVar'
     })
   },
   methods: {
     ...mapActions({
       getALLCountryList: 'getALLCountryList',
       addNewRequestPhone: 'addNewRequestPhone',
-      addNewRequestEmail: 'addNewRequestEmail'
+      addNewRequestEmail: 'addNewRequestEmail',
+      getVarByName: 'getVarByName'
     }),
     selectCountry() {
       this.showHome = false
     },
-    changeCountry(country) {
-      this.countryCode = country.callingCodes[0]
-      this.country = country.name
-      this.showHome = true
-    },
+    // changeCountry(country) {
+    //   this.countryCode = country.callingCodes[0]
+    //   this.country = country.name
+    //   this.showHome = true
+    // },
     tabChanged() {
       const that = this
       that.showPhoneErr = false
@@ -156,8 +178,8 @@ export default {
         that.showPhoneErr = true
       } else {
         const data = {
-          phone: that.phone,
-          countryCode: that.countryCode
+          phone: that.phone
+          // countryCode: that.countryCode
         }
         that
           .addNewRequestPhone(data)
@@ -197,6 +219,10 @@ export default {
     validateEmail(email) {
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return re.test(String(email).toLowerCase())
+    },
+    showVideoModel(){
+      let that = this
+      that.videoModel = true
     }
   },
   watch: {
@@ -214,7 +240,15 @@ export default {
     }
   },
   mounted() {
-    this.getALLCountryList()
+    let that = this
+    let data = {
+      varName: 'showVideo'
+    }
+    this.getVarByName(data).then((res) => {
+      console.log(res)
+    }).catch((err) => {
+      that.$Message.error(err.message)
+    })
   }
 }
 </script>

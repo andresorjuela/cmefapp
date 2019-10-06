@@ -94,7 +94,7 @@ export const getAllrequestList = ({ commit, dispatch }, data) => new Promise((re
       requestList.forEach(function (request) {
         if (request.isPhone) {
           request.reqType = 'Phone'
-          request.contact = `${request.countryCode} ${request.phone}`
+          request.contact = request.phone
         } else {
           request.reqType = 'Email'
           request.contact = request.email
@@ -286,6 +286,43 @@ export const getALLEvents = ({ commit, dispatch }) => new Promise((resolve, reje
   });
 });
 
+export const getALLVars = ({ commit, dispatch }) => new Promise((resolve, reject) => {
+  Api().get('/Api/sysVar').then((res) => {
+    if (res.data.status == 200) {
+      let vars = res.data.data
+      commit('SET_SYS_VAR' , vars)
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
+export const getVarByName = ({ commit, dispatch } ,data) => new Promise((resolve, reject) => {
+  Api().post('/Api/sysVar/byName' , data).then((res) => {
+    if (res.data.status == 200) {
+      let variable = res.data.variable.value
+      commit('SET_SHOW_VIDEO' , variable)
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+export const updateVariable = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
+  Api().post('/Api/sysVar/update', data).then((res) => {
+    if (res.data.status == 200) {
+      dispatch('getALLVars')
+      resolve(res.data);
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
 export const addNewEvent = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
   Api().post('/Api/event/addEvent', data).then((res) => {
     if (res.data.status == 200) {
@@ -300,6 +337,18 @@ export const addNewEvent = ({ commit, dispatch }, data) => new Promise((resolve,
 
 export const deleteEvent = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
   Api().post('/Api/event/delete', data).then((res) => {
+    if (res.data.status == 200) {
+      resolve(res.data);
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
+
+export const deleteRequest = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
+  Api().post('/Api/request/delete', data).then((res) => {
     if (res.data.status == 200) {
       resolve(res.data);
     } else {

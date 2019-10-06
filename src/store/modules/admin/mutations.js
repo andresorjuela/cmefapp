@@ -39,4 +39,12 @@ export const SET_EVENT_LIST = (state, list) => {
   state.eventList = list;
 };
 
+export const SET_SYS_VAR = (state, list) => {
+  state.variables = list;
+};
+export const SET_SHOW_VIDEO = (state, value) => {
+  state.showVideo = value;
+};
+
+
 

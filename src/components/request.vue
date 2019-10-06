@@ -77,7 +77,22 @@ export default {
                   }
                 },
                 "Update"
-              )
+              ),
+               h(
+                "Button",
+                {
+                  props: {
+                    type: "error",
+                    size: "small"
+                  },
+                  on: {
+                    click: () => {
+                      this.delete(params.index);
+                    }
+                  }
+                },
+                "Delete"
+              ),
             ]);
           }
         }
@@ -106,7 +121,8 @@ export default {
   methods: {
     ...mapActions({
       getAllrequestList: "getAllrequestList",
-      updateRequestStatus: "updateRequestStatus"
+      updateRequestStatus: "updateRequestStatus",
+      deleteRequest: 'deleteRequest'
     }),
     update(index) {
       let that = this;
@@ -116,6 +132,24 @@ export default {
       that.updateRequestModel = true;
       }else{
           this.$Message.info('Cannot update completed request');
+      }
+    },
+    delete(index){
+      let that = this;
+      let currentRequest = that.requestList[index];
+      if(currentRequest.status !== 'completed'){
+          this.$Message.info(`Cannot delete ${currentRequest.status} request`);
+      }else{
+        let data = {
+          id: currentRequest._id
+        }
+        console.log(data)
+        that.deleteRequest(data).then((res) => {
+          this.$Message.success(res.message);
+          this.getAllrequestList();
+        }).catch(err => {
+          this.$Message.error(err.message);
+        })
       }
     },
     updateStatus() {

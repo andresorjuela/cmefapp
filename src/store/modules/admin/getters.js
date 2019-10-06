@@ -9,3 +9,5 @@ export const getDBStates = state => state.DBStats
 export const getDateTiming = state => state.dateTiming
 export const getDateInfo = state => state.dateInfo
 export const getEventList = state => state.eventList
+export const getVariables = state => state.variables
+export const getVideoVar = state => state.showVideo

@@ -16,7 +16,9 @@ const state = {
   DBStats:{},
   dateInfo: [],
   dateTiming: [],
-  eventList: []
+  eventList: [],
+  variables: [],
+  showVideo: false
 };
 export default {
   state,

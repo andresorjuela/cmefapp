@@ -32,7 +32,7 @@
     >
       <div style="text-align:center">
         <Input size="large" v-model="title" placeholder="Event Tittle" />
-        <div class="mt-2">
+        <!-- <div class="mt-2">
           <Select v-model="date" placeholder="Select Date">
             <Option v-for="item in dateList" :value="item.value" :key="item.label">{{ item.label }}</Option>
           </Select>
@@ -41,7 +41,7 @@
           <Select v-model="time" placeholder="Select Time">
             <Option v-for="item in timeList" :value="item.time" :key="item.time">{{ item.time }}</Option>
           </Select>
-        </div>
+        </div> -->
         <div class="mt-2">
           <Input v-model="content" type="textarea" placeholder="Enter Event Description..." />
         </div>
@@ -63,38 +63,6 @@ export default {
       newEventModel: false,
       title: '',
       content: '',
-      date: '',
-      time: '11:00 AM',
-      dateList: [],
-      timeList: [
-        {
-          time: '11:00 AM'
-        },
-        {
-          time: '11:30 AM'
-        },
-        {
-          time: '12:00 PM'
-        },
-        {
-          time: '12:30 PM'
-        },
-        {
-          time: '01:30 PM'
-        },
-        {
-          time: '02:00 PM'
-        },
-        {
-          time: '02:30 PM'
-        },
-        {
-          time: '03:00 PM'
-        },
-        {
-          time: '03:30 PM'
-        }
-      ]
     }
   },
   computed: {
@@ -119,8 +87,6 @@ export default {
         let data = {
           content: that.content,
           title: that.title,
-          date: that.date,
-          time: that.time
         }
         that
           .addNewEvent(data)
@@ -162,27 +128,6 @@ export default {
   mounted() {
     let that = this
     that.getALLEvents()
-    that
-      .getActiveDates()
-      .then(res => {
-        if (res.length > 0) {
-          let dateList = []
-          res.forEach(item => {
-            dateList.push({
-              value: item.date,
-              label: item.date
-            })
-          })
-          that.dateList = dateList
-          that.date = dateList[0].value
-        } else {
-          that.$Message.error('No date availabe to add Event')
-          that.showAddEvent = false
-        }
-      })
-      .catch(err => {
-        console.log('err', err)
-      })
   }
 }
 </script>
