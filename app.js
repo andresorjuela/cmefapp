@@ -11,6 +11,7 @@ var appointRouter = require('./routes/appointment');
 var adminRouter = require('./routes/admin');
 var productRouter = require('./routes/product');
 var eventRouter = require('./routes/event');
+var sysVarRouter = require('./routes/variable');
 
 //database setting
 require('./config/database')
@@ -31,6 +32,7 @@ app.use('/Api/appointment', appointRouter);
 app.use('/Api/product', productRouter);
 app.use('/Api/admin', adminRouter);
 app.use('/Api/event', eventRouter);
+app.use('/Api/sysVar', sysVarRouter);
 
 app.use(express.static(__dirname + '/public/'));
 

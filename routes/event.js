@@ -16,7 +16,7 @@ router.get('/list', function (req, res, next) {
 });
 
 router.post('/addEvent', function (req, res, next) {
-    if (!req.body.title || !req.body.content || !req.body.date || !req.body.time) {
+    if (!req.body.title || !req.body.content ) {
         res.json({
             status: 1000,
             message: 'Invalid parameters'
@@ -24,9 +24,7 @@ router.post('/addEvent', function (req, res, next) {
     } else {
         let event = {
             title: req.body.title,
-            content: req.body.content,
-            date: req.body.date,
-            time: req.body.time
+            content: req.body.content
         }
         let newEvent = new eventCollection(event)
         newEvent.save().then(function (event) {
