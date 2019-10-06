@@ -17,15 +17,14 @@ router.get('/list', function (req, res, next) {
 });
 
 router.post('/add/phone', function (req, res, next) {
-  if (!req.body.countryCode || !req.body.phone) {
+  if (!req.body.phone) {
     res.json({
       status: 1000,
       message: 'Invalid parameters'
     })
   } else {
     requestCollection.findOne({
-      phone: req.body.phone,
-      countryCode: req.body.countryCode
+      phone: req.body.phone
     }, function (err, data) {
       if (err) {
         res.json(err)
@@ -38,7 +37,6 @@ router.post('/add/phone', function (req, res, next) {
         } else {
           let new_request = new requestCollection({
             createdOn: Date.now(),
-            countryCode: req.body.countryCode,
             phone: req.body.phone
           })
           new_request.save().then((request) => {
@@ -161,6 +159,24 @@ router.post('/update', function (req, res, next) {
           res.json(err)
         })
       }
+    })
+  }
+})
+
+
+router.post('/delete' , function(req , res , next){
+  if(!req.body.id){
+    res.json({
+      status: 1000,
+      message: 'Invalid parameters'
+    })
+  }else{
+    requestCollection.findByIdAndRemove({_id: req.body.id} , function(err){
+      if(err) throw err;
+      res.json({
+        status: 200,
+        message: `Request Deleted`
+      })
     })
   }
 })

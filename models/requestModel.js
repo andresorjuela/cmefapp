@@ -10,9 +10,9 @@ const requestSchema = new Schema({
     email: {
         type: String
     },
-    countryCode: {
-        type: String
-    },
+    // countryCode: {
+    //     type: String
+    // },
     phone: {
         type: String
     },

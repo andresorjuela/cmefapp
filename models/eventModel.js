@@ -16,11 +16,9 @@ const eventSchema = new Schema({
         type: String
     },
     time: {
-        required: true,
         type: String,
     },
     date: {
-        required: true,
         type: String,
     },
     isActive: {
