@@ -22,7 +22,7 @@
         </div>
         <div class="btn">
           <Button type="warning" long to="/Events">
-            <h1 class="btnTitle">活动</h1>
+            <h1 class="btnTitle">现场活动</h1>
           </Button>
         </div>
         <div class="btn" v-if="showVideoButton">
