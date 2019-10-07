@@ -63,7 +63,7 @@
               </div>
             </div>
           </TabPane>
-          <TabPane label="电子邮件" name="name2">
+          <TabPane label="邮件" name="name2">
             <div v-if="showEmailErr">
               <Alert type="error">无效的电子邮箱</Alert>
             </div>
