@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/img/Spo2.0e0e440f.jpg"
   },
   {
-    "revision": "79c5e52568a3d1c10c4862ece3d134e6",
+    "revision": "8ea08fbc3554976fe9319c53a679b873",
     "url": "/index.html"
   },
   {
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/img/ionicons.a2c4a261.svg"
   },
   {
-    "revision": "45bdf9090701639359a8",
-    "url": "/js/app.5def17c4.js"
+    "revision": "1b816df6ccca29da492a",
+    "url": "/js/app.0f11f341.js"
   },
   {
     "revision": "db39caa423524b787b12b78bdc7cd31a",
@@ -96,7 +96,7 @@ self.__precacheManifest = [
     "url": "/fonts/ionicons.99ac3308.woff"
   },
   {
-    "revision": "45bdf9090701639359a8",
-    "url": "/css/app.b82d5522.css"
+    "revision": "1b816df6ccca29da492a",
+    "url": "/css/app.f641b7d8.css"
   }
 ];
