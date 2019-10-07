@@ -78,7 +78,9 @@
           class="success--message"
         >您已经预定成功！稍后会有我们公司的专员联系您</h3>
         <CellGroup>
-          <Cell title="预约细节" />
+          <Cell>
+          <b>预约细节</b>
+          </Cell>
           <Cell title="邮箱/手机号" :extra="contact" />
           <Cell title="日期" :extra="date" />
           <Cell title="时间" :extra="time" />
@@ -148,7 +150,6 @@ export default {
           .then(res => {
             that.fname = ''
             that.lname = ''
-            that.contact = ''
             that.bookingModel = true
             this.getAvailabeDates()
             this.$Message.success(res.message)

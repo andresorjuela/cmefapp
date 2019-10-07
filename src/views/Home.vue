@@ -6,8 +6,8 @@
         <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo" />
       </div>
       <div class="content">
-        <h2>时间地点: 2019.10.19-22</h2>
-        <h2>山东青岛 - 展位号: N3, J01</h2>
+        <h2>时间: 2019.10.19-22</h2>
+        <h2>地点: 山东青岛 - 展位号: N3, J01</h2>
       </div>
       <div class="btn--content">
         <div class="btn">
@@ -27,7 +27,7 @@
         </div>
         <div class="btn" v-if="showVideoButton">
           <Button type="warning" long @click="showVideoModel">
-            <h1 class="btnTitle" >企业介绍</h1>
+            <h1 class="btnTitle">企业介绍</h1>
           </Button>
         </div>
       </div>
@@ -41,13 +41,8 @@
               <Alert type="error">无效的手机号码</Alert>
             </div>
             <div class="row">
-              <Input
-                v-model="phone"
-                size="large"
-                type="number"
-                placeholder="请留下您的手机号"
-               />
-                <!-- <Select
+              <Input v-model="phone" size="large" type="number" placeholder="请留下您的手机号" />
+              <!-- <Select
                   slot="prepend"
                   v-model="countryCode"
                   style="width: 80px"
@@ -55,7 +50,7 @@
                 >
                   <Option :value="countryCode">{{ country }}</Option>
                 </Select>
-              </Input> -->
+              </Input>-->
               <div style="margin-left: 2vw;">
                 <Button type="warning" size="large" @click="submitPhoneRequest">
                   <b class="btnTitle">提交</b>
@@ -100,30 +95,21 @@
         <span style="margin-left: 2vw;">请求已接收</span>
       </p>
       <div style="text-align:center">
-        <h4
-          class="success--message"
-        >已收到您的联系方式。稍微会有橙汇的工作人员联系您。</h4>
+        <h4 class="success--message">已收到您的联系方式。稍微会有橙汇的工作人员联系您。</h4>
       </div>
       <div slot="footer" />
     </Modal>
     <Modal
-        v-model="videoModel"
-        title="企业介绍"
-        cancel-text=' '
-        ok-text="关"
-        @on-ok="videoModel = false"
-        @on-cancel="videoModel = false">
-        <video controls width="100%">
-
-    <source src="https://www.youtube.com/watch?v=XgnUD4stogY&feature=youtu.be"
-            type="video/webm">
-
-    <source src="https://www.youtube.com/watch?v=XgnUD4stogY&feature=youtu.be"
-            type="video/mp4">
-
-    Sorry, your browser doesn't support embedded videos.
-</video>
-
+      v-model="videoModel"
+      title="企业介绍"
+      cancel-text=" "
+      ok-text="关"
+      @on-ok="videoModel = false"
+      @on-cancel="videoModel = false"
+    >
+      <video controls width="100%">
+        <source :src="videoUrl" type="video/mp4" />Sorry, your browser doesn't support embedded videos.
+      </video>
     </Modal>
   </section>
 </template>
@@ -144,7 +130,9 @@ export default {
       showPhoneErr: false,
       email: '',
       showEmailErr: false,
-      newCountry: ''
+      newCountry: '',
+      videoUrl:
+        'https://ot-product-image.oss-cn-shenzhen.aliyuncs.com/Video/Orantech_Company_Video_English.mp4'
     }
   },
   computed: {
@@ -221,7 +209,7 @@ export default {
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       return re.test(String(email).toLowerCase())
     },
-    showVideoModel(){
+    showVideoModel() {
       let that = this
       that.videoModel = true
     }
@@ -245,11 +233,20 @@ export default {
     let data = {
       varName: 'showVideo'
     }
-    this.getVarByName(data).then((res) => {
-      console.log(res)
-    }).catch((err) => {
-      that.$Message.error(err.message)
-    })
+    that
+      .getVarByName(data)
+      .then(res => {
+        that.$store.commit('SET_SHOW_VIDEO', res.value)
+        let videoUrl = {
+          varName: 'videoUrl'
+        }
+        that.getVarByName(videoUrl).then(res => {
+          that.videoUrl = res.value
+        })
+      })
+      .catch(err => {
+        that.$Message.error(err.message)
+      })
   }
 }
 </script>
@@ -351,13 +348,13 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
-.btnTitle{
-  color:#6f6f6f;
+.btnTitle {
+  color: #6f6f6f;
 }
 .ivu-tabs-nav {
   color: #fff;
 }
-.reqText{
+.reqText {
   text-align: center;
   padding: 1px 1px 2vh 1px;
 }

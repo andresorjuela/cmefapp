@@ -302,8 +302,7 @@ export const getALLVars = ({ commit, dispatch }) => new Promise((resolve, reject
 export const getVarByName = ({ commit, dispatch } ,data) => new Promise((resolve, reject) => {
   Api().post('/Api/sysVar/byName' , data).then((res) => {
     if (res.data.status == 200) {
-      let variable = res.data.variable.value
-      commit('SET_SHOW_VIDEO' , variable)
+      resolve(res.data.variable);
     } else {
       reject(res.data);
     }
