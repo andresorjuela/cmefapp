@@ -100,4 +100,35 @@ router.post('/byName', function (req, res, next) {
         })
     }
 })
+router.post('/toggleType', function (req, res, next) {
+    if (!req.body.name) {
+        res.json({
+            status: 1000,
+            message: 'Invalid parameters'
+        })
+    } else {
+        variableCollection.findOne({ name: req.body.name }, function (err, record) {
+            if (err) {
+                res.json(err)
+            } else {
+                if (!record) {
+                    res.json({
+                        status: 1002,
+                        message: `variable not found`,
+                    })
+                } else {
+                    record.isBoolean = req.body.isBoolean
+                    record.save().then(sysVar => {
+                                res.json({
+                                    status: 200,
+                                    message: 'variable Updated'
+                                })
+                            }).catch(err => {
+                                res.json(err)
+                            })
+                        }
+            }
+        })
+    }
+})
 module.exports = router;
