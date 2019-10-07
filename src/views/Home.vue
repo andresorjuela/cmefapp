@@ -6,7 +6,8 @@
         <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo" />
       </div>
       <div class="content">
-        <h4>时间地点: 2019.10.19-22, 山东青岛 - 展位号: N3, J01</h4>
+        <h2>时间地点: 2019.10.19-22</h2>
+        <h2>山东青岛 - 展位号: N3, J01</h2>
       </div>
       <div class="btn--content">
         <div class="btn">
@@ -35,7 +36,7 @@
           <h2>有兴趣成为我们的经销商吗?</h2>
         </div>
         <Tabs type="card" value="name1" @on-click="tabChanged()">
-          <TabPane label="Phone" name="name1">
+          <TabPane label="电话" name="name1">
             <div v-if="showPhoneErr">
               <Alert type="error">无效的手机号码</Alert>
             </div>
@@ -62,7 +63,7 @@
               </div>
             </div>
           </TabPane>
-          <TabPane label="Email" name="name2">
+          <TabPane label="电子邮件" name="name2">
             <div v-if="showEmailErr">
               <Alert type="error">无效的电子邮箱</Alert>
             </div>
