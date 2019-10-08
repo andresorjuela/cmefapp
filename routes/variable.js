@@ -119,14 +119,14 @@ router.post('/toggleType', function (req, res, next) {
                 } else {
                     record.isBoolean = req.body.isBoolean
                     record.save().then(sysVar => {
-                                res.json({
-                                    status: 200,
-                                    message: 'variable Updated'
-                                })
-                            }).catch(err => {
-                                res.json(err)
-                            })
-                        }
+                        res.json({
+                            status: 200,
+                            message: 'variable Updated'
+                        })
+                    }).catch(err => {
+                        res.json(err)
+                    })
+                }
             }
         })
     }
