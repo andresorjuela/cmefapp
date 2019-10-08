@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "d2af4f003c01703cc2fd8a50e2b17348",
-    "url": "/img/Temperature.d2af4f00.jpg"
+    "revision": "717ea24c12aa5a3caadcedb45bdf8cb8",
+    "url": "/img/Orantech.717ea24c.jpg"
   },
   {
     "revision": "b6216d61c03e6ce0c9aea6ca7808f7ca",
@@ -48,8 +48,12 @@ self.__precacheManifest = [
     "url": "/img/VET.db39caa4.jpg"
   },
   {
-    "revision": "39a86906cdb6a1fdd02d",
-    "url": "/js/app.ae9c0253.js"
+    "revision": "d2af4f003c01703cc2fd8a50e2b17348",
+    "url": "/img/Temperature.d2af4f00.jpg"
+  },
+  {
+    "revision": "a4e9ff53562851cc4353",
+    "url": "/js/app.5fa56b78.js"
   },
   {
     "revision": "0e0e440f37010a9f6ad8133d1028048a",
@@ -68,7 +72,7 @@ self.__precacheManifest = [
     "url": "/img/NIBP.b1dbc9c4.jpg"
   },
   {
-    "revision": "e98f8265224757eaf439faae9f3fdf7d",
+    "revision": "97d2b96c6f965adb0220bff9ae1fdbde",
     "url": "/index.html"
   },
   {
@@ -96,7 +100,7 @@ self.__precacheManifest = [
     "url": "/fonts/ionicons.143146fa.woff2"
   },
   {
-    "revision": "39a86906cdb6a1fdd02d",
-    "url": "/css/app.c6300ffa.css"
+    "revision": "a4e9ff53562851cc4353",
+    "url": "/css/app.2950b853.css"
   }
 ];

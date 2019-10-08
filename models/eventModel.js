@@ -25,6 +25,10 @@ const eventSchema = new Schema({
         required: true,
         type: Boolean,
         default: true
+    },
+    type:{
+        required: true,
+        type: String
     }
 })
 

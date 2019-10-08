@@ -77,15 +77,15 @@ router.post('/timing', function (req, res, next) {
         res.json(err)
       } else {
         let timing = []
-        console.log(date)
         date.timing.forEach((item) => {
           if (item.isAvailable && item.booking < 2) {
+            console.log({ item, rbodyDate: eq.body.date, date }, timing)
             timing.push({
               value: item._id,
               label: item.time,
               disabled: false
             })
-          }else{
+          } else {
             timing.push({
               value: item._id,
               label: item.time,
