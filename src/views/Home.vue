@@ -7,17 +7,17 @@
       </div>
       <div class="content">
         <h2>时间: 2019.10.19-22</h2>
-        <h2>地点: 山东青岛 - 展位号: N3, J01</h2>
+        <h2>地点: 山东青岛 - 展位号: N3馆, J01</h2>
       </div>
       <div class="btn--content">
-        <div class="btn">
-          <Button type="warning" long to="/Appointment">
-            <h1 class="btnTitle">现场活动</h1>
+        <div class="btn" v-if="showVideoButton">
+          <Button type="warning" long @click="showVideoModel">
+            <h1 class="btnTitle">企业视频</h1>
           </Button>
         </div>
         <div class="btn">
           <Button type="warning" long to="/Products">
-            <h1 class="btnTitle">产品概览</h1>
+            <h1 class="btnTitle">产品一览</h1>
           </Button>
         </div>
         <div class="btn">
@@ -25,11 +25,14 @@
             <h1 class="btnTitle">现场活动</h1>
           </Button>
         </div>
-        <div class="btn" v-if="showVideoButton">
-          <Button type="warning" long @click="showVideoModel">
-            <h1 class="btnTitle">企业介绍</h1>
+        <div class="btn">
+          <Button type="warning" long to="/Appointment">
+            <h1 class="btnTitle">预约洽谈</h1>
           </Button>
         </div>
+      </div>
+      <div class="content">
+        <h3>美橙医疗-橙汇科技中国区唯一战略合作伙伴</h3>
       </div>
       <Card class="card" style="background-color: #47C2D1; color: #fff">
         <div class="reqText">
@@ -63,7 +66,7 @@
               <Alert type="error">无效的电子邮箱</Alert>
             </div>
             <div class="row">
-              <Input v-model="email" type="email" placeholder="请留下您的手机号" />
+              <Input v-model="email" type="email" placeholder="请填写您的邮箱信息" />
               <div style="margin-left: 2vw;">
                 <Button type="warning" size="large" @click="submitEmailRequest">
                   <b class="btnTitle">提交</b>
@@ -101,7 +104,7 @@
     </Modal>
     <Modal
       v-model="videoModel"
-      title="企业介绍"
+      title=" 橙汇科技-监护电缆与附件的专业制造商"
       cancel-text=" "
       ok-text="关"
       @on-ok="videoModel = false"

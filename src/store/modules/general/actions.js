@@ -18,7 +18,7 @@ export const getALLCountryList = ({ commit, dispatch }) => {
 
 /** date related API calles for client side */
 export const getAvailabeDates = ({ commit, dispatch }) => new Promise((resolve, reject) => {
-  Api().get('/Api/getAvailabeDates').then((res) => {
+  Api().get('/Api/getAllDates').then((res) => {
     if (res.data.status == 200) {
       const dateList = res.data.list
       if (dateList.length > 0) {

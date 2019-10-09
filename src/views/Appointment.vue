@@ -2,10 +2,7 @@
   <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-      <div class="logos--row">
-        <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo" />
-        <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo" />
-      </div>
+      <h3 class="pageTitle">2019秋CMEF青岛预约洽谈登记</h3>
     </div>
     <div class="content" v-if="canBookAppointment">
       <Card class="card" style="margin-top: 1vh;">
@@ -266,5 +263,9 @@ export default {
 .success--message {
   color: rgb(236, 102, 8);
   text-align: justify;
+}
+.pageTitle {
+  width: 100%;
+  text-align: center;
 }
 </style>

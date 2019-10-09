@@ -2,10 +2,7 @@
 <section class="home">
     <div class="row">
         <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-        <div class="logos--row">
-            <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo">
-            <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo">
-        </div>
+        <h3 class="pageTitle">兼容性监护电缆与传感器</h3>
     </div>
     <Card class="card" style="margin-top: 1vh;">
         <div class="products">
@@ -55,7 +52,7 @@ export default {
                 pic: require('./../assets/images/MPC.jpg'),
             }, {
                 name: '维修部件',
-                pic: require('./../assets/images/Repair_Parts.png'),
+                pic: require('./../assets/images/Repair_Parts.jpg'),
             }, {
                 name: '动物',
                 pic: require('./../assets/images/VET.jpg'),
@@ -145,5 +142,9 @@ export default {
 .product--logo {
     width: 100%;
     border-radius: 5px;
+}
+.pageTitle{
+    width: 100%;
+    text-align: center;
 }
 </style>

@@ -152,6 +152,7 @@ export const getAllDates = ({ commit, dispatch }) => new Promise((resolve, rejec
           Object.keys(date.timing).forEach(function (key) {
             //get the value of name
             var val = date.timing[key]["booking"];
+            console.log(date.timing , date.timing[key] , date.timing[key].booking , val)
             appointments.push(val);
           });
           //get total bookings
@@ -334,6 +335,18 @@ export const addNewEvent = ({ commit, dispatch }, data) => new Promise((resolve,
   });
 });
 
+export const updateEventData = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
+  Api().post('/Api/event/update', data).then((res) => {
+    if (res.data.status == 200) {
+      resolve(res.data);
+      dispatch('getALLEvents')
+    } else {
+      reject(res.data);
+    }
+  }).catch((err) => {
+    reject(err);
+  });
+});
 export const deleteEvent = ({ commit, dispatch }, data) => new Promise((resolve, reject) => {
   Api().post('/Api/event/delete', data).then((res) => {
     if (res.data.status == 200) {

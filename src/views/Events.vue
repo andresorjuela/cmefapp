@@ -2,19 +2,24 @@
   <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-      <div class="logos--row">
-        <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo" />
-        <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo" />
-      </div>
+      <h3 class="pageTitle">2019秋CMEF青岛展活动：N3馆，J01</h3>
     </div>
     <div class="content" v-if="eventList.length > 0">
       <Row v-for="(event , index) in eventList" :key="index">
         <Col span="24" style="margin-top: 1vh">
           <Card>
-            <h2 slot="title">{{event.title}}</h2>
+            <div slot="title" class="rowEvent">
+              <div v-if="event.type == 'Orantech'">
+                <img src="@/assets/images/Orantech.jpg" class="eventType--logo" />
+              </div>
+              <div v-if="event.type == 'Medten'">
+                <img src="@/assets/images/Medten.jpg" class="eventType--logo" />
+              </div>
+              <h4 style="margin-left: 1vw;">{{event.title}}</h4>
+            </div>
             <h5>{{event.date}} {{event.time}}</h5>
             <div style="margin-top: 1vh">
-            <p>{{event.content}}</p>
+              <p>{{event.content}}</p>
             </div>
           </Card>
         </Col>
@@ -80,7 +85,13 @@ export default {
   align-items: center;
   border-bottom: 1px solid gray;
 }
-
+.rowEvent{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+}
 .logos--row {
   display: flex;
   flex-direction: row;
@@ -97,6 +108,10 @@ export default {
 .cmef--logo {
   width: 45%;
   height: 46px;
+}
+.pageTitle {
+  width: 100%;
+  text-align: center;
 }
 .card {
   width: 95%;

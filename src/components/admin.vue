@@ -136,9 +136,11 @@ export default {
         cancelText: "Close",
         okText: "Delete",
         onOk: function() {
+          console.log(admin)
           let data = {
             id: admin._id
           };
+          console.log(data)
           that.deleteAdmin(data);
         }
       });

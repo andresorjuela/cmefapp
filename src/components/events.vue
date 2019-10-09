@@ -11,11 +11,24 @@
     <div class="eventList mt-2" v-for="(event , index) in eventList" :key="index">
       <div class="card">
         <div class="row">
-          <h3>{{event.title}}</h3>
-          <Icon type="md-trash" size="24" color="red" @click="deleteCurrentEvent(event)" />
+          <div class="rowFE">
+            <div v-if="event.type == 'Orantech'">
+              <img src="@/assets/images/Orantech.jpg" class="eventType--logo" />
+            </div>
+            <div v-if="event.type == 'Medten'">
+              <img src="@/assets/images/Medten.jpg" class="eventType--logo" />
+            </div>
+            <h3 class="eventType">{{event.type}} Event</h3>
+          </div>
+          <div>
+            <Icon type="md-trash" size="24" color="red" @click="deleteCurrentEvent(event)" />
+            <Icon type="md-more" size="24" color="light-blue" @click="editCurrentEvent(event)" />
+          </div>
         </div>
-        <h4>{{event.date}} {{event.time}}</h4>
-        <p>{{event.content}}</p>
+        <div style="padding: 2vh 1vw">
+          <h3>{{event.title}}</h3>
+          <p>{{event.content}}</p>
+        </div>
       </div>
     </div>
     <div class="eventList mt-2" v-if="eventList.length  == 0">
@@ -41,12 +54,52 @@
           <Select v-model="time" placeholder="Select Time">
             <Option v-for="item in timeList" :value="item.time" :key="item.time">{{ item.time }}</Option>
           </Select>
-        </div> -->
+        </div>-->
         <div class="mt-2">
           <Input v-model="content" type="textarea" placeholder="Enter Event Description..." />
         </div>
         <div class="mt-2">
+          <Select v-model="evtType">
+            <Option
+              v-for="item in eventTypes"
+              :value="item.value"
+              :key="item.value"
+            >{{ item.label }}</Option>
+          </Select>
+        </div>
+        <div class="mt-2">
           <Button type="success" long @click="createEvent">Create Event</Button>
+        </div>
+      </div>
+    </Modal>
+    <Modal
+      v-model="showEditEvent"
+      title="Update Event"
+      ok-text="Cancel"
+      cancel-text=" "
+      @on-ok="showEditEvent = false"
+      @on-cancel="showEditEvent = false"
+    >
+      <div style="text-align:center">
+        <Input size="large" v-model="currentEvent.title" placeholder="Event Tittle" />
+        <div class="mt-2">
+          <Input
+            v-model="currentEvent.content"
+            type="textarea"
+            placeholder="Enter Event Description..."
+          />
+        </div>
+        <div class="mt-2">
+          <Select v-model="currentEvent.type">
+            <Option
+              v-for="item in eventTypes"
+              :value="item.value"
+              :key="item.value"
+            >{{ item.label }}</Option>
+          </Select>
+        </div>
+        <div class="mt-2">
+          <Button type="success" long @click="updateEvent">Update Event</Button>
         </div>
       </div>
     </Modal>
@@ -61,8 +114,21 @@ export default {
     return {
       showAddEvent: true,
       newEventModel: false,
+      currentEvent: {},
+      showEditEvent: false,
       title: '',
       content: '',
+      evtType: 'Orantech',
+      eventTypes: [
+        {
+          value: 'Orantech',
+          label: 'Orantech'
+        },
+        {
+          value: 'Medten',
+          label: 'Medten'
+        }
+      ]
     }
   },
   computed: {
@@ -75,7 +141,8 @@ export default {
       getActiveDates: 'getActiveDates',
       getALLEvents: 'getALLEvents',
       addNewEvent: 'addNewEvent',
-      deleteEvent: 'deleteEvent'
+      deleteEvent: 'deleteEvent',
+      updateEventData: 'updateEventData'
     }),
     createEvent() {
       let that = this
@@ -87,6 +154,7 @@ export default {
         let data = {
           content: that.content,
           title: that.title,
+          type: that.evtType
         }
         that
           .addNewEvent(data)
@@ -123,6 +191,32 @@ export default {
         },
         onCancel: () => {}
       })
+    },
+    editCurrentEvent(event) {
+      if (!event.type || event.type == '') {
+        event.type = 'Orantech'
+      }
+      this.currentEvent = event
+      this.showEditEvent = true
+    },
+    updateEvent() {
+      let that = this
+      let data = {
+        id: that.currentEvent._id,
+        title: that.currentEvent.title,
+        content: that.currentEvent.content,
+        type: that.currentEvent.type
+      }
+      that
+        .updateEventData(data)
+        .then(res => {
+          this.$Message.success('Event Updated')
+          that.showEditEvent = false
+          that.getALLEvents()
+        })
+        .catch(err => {
+          this.$Message.error(err.message)
+        })
     }
   },
   mounted() {
@@ -154,5 +248,17 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.rowFE {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.eventType {
+  margin-left: 2vw;
+}
+.eventType--logo {
+  width: 24px;
+  height: 24px;
 }
 </style>
