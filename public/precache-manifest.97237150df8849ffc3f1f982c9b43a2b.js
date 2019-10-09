@@ -72,7 +72,7 @@ self.__precacheManifest = [
     "url": "/img/NIBP.b1dbc9c4.jpg"
   },
   {
-    "revision": "6c501a7936f67df3be84183cfa52b71f",
+    "revision": "9a56abb16903890bed871e98e402795d",
     "url": "/index.html"
   },
   {
