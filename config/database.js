@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/cmef'
+console.log('mongo url  ' , url)
 module.exports = (() => {
     mongoose.connect(url, { useNewUrlParser: true })
     mongoose.set('useCreateIndex', true)
