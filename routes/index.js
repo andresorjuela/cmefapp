@@ -7,7 +7,11 @@ const adminCollection = require('../models/adminModel')
 const eventCollection = require('../models/eventModel')
 
 router.get('/getAllDates', function (req, res, next) {
-  dateCollection.find({}, function (err, list) {
+  dateCollection.find({}).sort({
+    year: 1,
+    month: 1,
+    day: 1,
+  }).exec(function (err, list) {
     if (err) {
       res.json(err)
     } else {
@@ -40,7 +44,11 @@ router.post('/singleDate', function (req, res, next) {
 })
 
 router.get('/getActiveDates', function (req, res, next) {
-  dateCollection.find({ isActive: true }, function (err, list) {
+  dateCollection.find({ isActive: true }).sort({
+    year: 1,
+    month: 1,
+    day: 1,
+  }).exec(function (err, list) {
     if (err) {
       res.json(err)
     } else {
@@ -110,9 +118,19 @@ router.post('/addNewDate', function (req, res, next) {
     })
   } else {
     let date = req.body.date
+    let stringLength = date.length
+    let day, month, year
+    if (stringLength > 9) {
+      day = date.substring(0, 2)
+      month = date.substring(3, 5)
+      year = date.substring(6, 10)
+    } else {
+      day = date.substring(0, 1)
+      month = date.substring(2, 4)
+      year = date.substring(5, 9)
+    }
     dateCollection.findOne({ date }, function (err, data) {
       if (err) {
-        console.log(err)
         res.json(err)
       } else {
         if (data !== null) {
@@ -123,7 +141,10 @@ router.post('/addNewDate', function (req, res, next) {
         } else {
           let new_date = new dateCollection({
             createdOn: Date.now(),
-            date
+            date,
+            day: Number(day),
+            month: Number(month),
+            year: Number(year)
           })
           console.log(new_date)
           new_date.save().then((date) => {
