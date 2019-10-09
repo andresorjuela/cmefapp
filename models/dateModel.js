@@ -27,6 +27,18 @@ const dateSchema = new Schema({
         type: Number,
         default: 0
     },
+    day:{
+        required: true,
+        type: Number
+    },
+    month:{
+        required: true,
+        type: Number
+    },
+    year: {
+        required: true,
+        type: Number
+    },
     timing: [{
         time: {},
         isAvailable: {},

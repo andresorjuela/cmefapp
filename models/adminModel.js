@@ -50,16 +50,6 @@ AdminSchema.pre('save', function (next) {
         next()
     }
 })
-AdminSchema.methods.toJSON = function(){
-    let admin = this
-    return {
-        name: admin.name,
-        username: admin.username,
-        isActive: admin.isActive,
-        createdOn: admin.createdOn,
-        lastLogin: admin.lastLogin
-    }
-}
 
 const admin = mongoose.model('admin', AdminSchema);
 

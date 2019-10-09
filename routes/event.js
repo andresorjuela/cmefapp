@@ -16,7 +16,7 @@ router.get('/list', function (req, res, next) {
 });
 
 router.post('/addEvent', function (req, res, next) {
-    if (!req.body.title || !req.body.content ) {
+    if (!req.body.title || !req.body.content || !req.body.type) {
         res.json({
             status: 1000,
             message: 'Invalid parameters'
@@ -24,7 +24,8 @@ router.post('/addEvent', function (req, res, next) {
     } else {
         let event = {
             title: req.body.title,
-            content: req.body.content
+            content: req.body.content,
+            type: req.body.type
         }
         let newEvent = new eventCollection(event)
         newEvent.save().then(function (event) {
@@ -37,6 +38,34 @@ router.post('/addEvent', function (req, res, next) {
     }
 });
 
+
+router.post('/update', function (req, res, next) {
+    if (!req.body.id || !req.body.title || !req.body.content || !req.body.type) {
+        res.json({
+            status: 1000,
+            message: 'Invalid parameters'
+        })
+    } else {
+        eventCollection.findById({ _id: req.body.id }, function (err, data) {
+            if (err) {
+                res.json(err)
+            } else {
+                data.title = req.body.title
+                data.content = req.body.content
+                data.type = req.body.type
+                data.save().then(event => {
+                    res.json({
+                        status: 200,
+                        message: 'Event Updated'
+                    })
+                }).catch(err => {
+                    res.json(err)
+                })
+            }
+        })
+    }
+})
+
 router.post('/delete', function (req, res, next) {
     if (!req.body.id) {
         res.json({
@@ -44,13 +73,13 @@ router.post('/delete', function (req, res, next) {
             message: 'Invalid parameters'
         })
     } else {
-        eventCollection.findByIdAndRemove({_id: req.body.id} , function(err){
-            if(err) throw err;
+        eventCollection.findByIdAndRemove({ _id: req.body.id }, function (err) {
+            if (err) throw err;
             res.json({
-              status: 200,
-              message: `Event Deleted`,
+                status: 200,
+                message: `Event Deleted`,
             })
-          })
+        })
     }
 });
 
