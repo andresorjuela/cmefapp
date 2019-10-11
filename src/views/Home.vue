@@ -110,9 +110,7 @@
       @on-ok="videoModel = false"
       @on-cancel="videoModel = false"
     >
-      <video controls width="100%">
-        <source :src="videoUrl" type="video/mp4" />Sorry, your browser doesn't support embedded videos.
-      </video>
+      <video controls width="100%" :src="videoUrl"></video>
     </Modal>
   </section>
 </template>
@@ -134,8 +132,7 @@ export default {
       email: '',
       showEmailErr: false,
       newCountry: '',
-      videoUrl:
-        'https://ot-product-image.oss-cn-shenzhen.aliyuncs.com/Video/Orantech_Company_Video_English.mp4'
+      videoUrl: 'test'
     }
   },
   computed: {
@@ -244,7 +241,9 @@ export default {
           varName: 'videoUrl'
         }
         that.getVarByName(videoUrl).then(res => {
+          console.log(that.videoUrl, res)
           that.videoUrl = res.value
+          console.log(that.videoUrl)
         })
       })
       .catch(err => {
