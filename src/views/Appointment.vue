@@ -52,7 +52,7 @@
           <Input v-model="contact" prefix="ios-mail" placeholder="邮箱/手机号" size="large" />
         </div>
         <p
-          class="info">如果您提交的是您的电子邮箱，我们会通过电子邮箱联系您。如果您提交的您的手机号（请加上您的国家区号），我们会通过短信联系您。</p>
+          class="info">如果您提交的是您的电子邮箱，我们会通过电子邮箱联系您。如果您提交的您的手机号，我们会通过短信联系您。</p>
         <div style="margin-top: 1vh">
           <Button type="success" long @click="confimBooking">
             <b>预约</b>
