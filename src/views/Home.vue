@@ -6,11 +6,11 @@
         <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo" />
       </div>
       <div class="content">
-        <h2>时间: 2019.10.19-22</h2>
-        <h2>地点: 山东青岛 - 展位号: N3馆, J01</h2>
+        <h2>{{eventDate}}</h2>
+        <h2>{{eventAddress}}</h2>
       </div>
       <div class="btn--content">
-        <div class="btn" v-if="showVideoButton">
+        <div class="btn" v-if="showVideo">
           <Button type="warning" long @click="showVideoModel">
             <h1 class="btnTitle">企业视频</h1>
           </Button>
@@ -132,7 +132,11 @@ export default {
       email: '',
       showEmailErr: false,
       newCountry: '',
-      videoUrl: 'test'
+      variablesList: [],
+      videoUrl: '',
+      eventDate: '',
+      eventAddress: '',
+      showVideo: false
     }
   },
   computed: {
@@ -146,7 +150,8 @@ export default {
       getALLCountryList: 'getALLCountryList',
       addNewRequestPhone: 'addNewRequestPhone',
       addNewRequestEmail: 'addNewRequestEmail',
-      getVarByName: 'getVarByName'
+      getVarByName: 'getVarByName',
+      getALLVars: 'getALLVars'
     }),
     selectCountry() {
       this.showHome = false
@@ -230,21 +235,15 @@ export default {
   },
   mounted() {
     let that = this
-    let data = {
-      varName: 'showVideo'
-    }
     that
-      .getVarByName(data)
+      .getALLVars()
       .then(res => {
-        that.$store.commit('SET_SHOW_VIDEO', res.value)
-        let videoUrl = {
-          varName: 'videoUrl'
-        }
-        that.getVarByName(videoUrl).then(res => {
-          console.log(that.videoUrl, res)
-          that.videoUrl = res.value
-          console.log(that.videoUrl)
-        })
+        that.videoUrl = res.find(({ name }) => name === 'videoUrl').value
+        that.eventDate = res.find(({ name }) => name === 'eventDate').value
+        that.eventAddress = res.find(
+          ({ name }) => name === 'eventAddress'
+        ).value
+        that.showVideo = res.find(({ name }) => name === 'showVideo').value
       })
       .catch(err => {
         that.$Message.error(err.message)

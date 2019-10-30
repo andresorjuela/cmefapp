@@ -292,6 +292,7 @@ export const getALLVars = ({ commit, dispatch }) => new Promise((resolve, reject
     if (res.data.status == 200) {
       let vars = res.data.data
       commit('SET_SYS_VAR' , vars)
+      resolve(vars)
     } else {
       reject(res.data);
     }

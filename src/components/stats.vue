@@ -102,7 +102,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      getDBStats: 'getDBStats'
+      getDBStats: 'getDBStats',
+      getALLVars: "getALLVars",
     })
   },
   beforeMount() {
@@ -117,6 +118,7 @@ export default {
         that.getDBStats()
       }
     }, 1000)
+    that.getALLVars()
   },
   beforeDestroy() {
     let that = this
