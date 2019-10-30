@@ -52,8 +52,8 @@ self.__precacheManifest = [
     "url": "/img/Temperature.d2af4f00.jpg"
   },
   {
-    "revision": "11b02f44c052c8073285",
-    "url": "/js/app.7a77307c.js"
+    "revision": "8bcced963f3b5ca90745",
+    "url": "/js/app.a491f95f.js"
   },
   {
     "revision": "0e0e440f37010a9f6ad8133d1028048a",
@@ -72,7 +72,7 @@ self.__precacheManifest = [
     "url": "/img/NIBP.b1dbc9c4.jpg"
   },
   {
-    "revision": "5ad6e732c193ad1f415eeaacf2035d65",
+    "revision": "e7a47b29c2937074a155438e4b9c149e",
     "url": "/index.html"
   },
   {
@@ -100,7 +100,7 @@ self.__precacheManifest = [
     "url": "/fonts/ionicons.143146fa.woff2"
   },
   {
-    "revision": "11b02f44c052c8073285",
-    "url": "/css/app.9c8d6696.css"
+    "revision": "8bcced963f3b5ca90745",
+    "url": "/css/app.be37155d.css"
   }
 ];
