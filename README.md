@@ -18,16 +18,18 @@ This app is build with Vue JS on frontend with Iview as ui framework. on backend
 ```
 varName: //variable name (unique)
 value: //boolean true or false
+type: //string or boolean
 ```
 
 
-
-* i will add an extra api and you will be able to set variable as text or number, user  `/api/sysVar/toggleType` . with a parameter 
+> Currently Required Variables
 
 ```
-name: //variable name 
+showVideo // show video button
+videoUrl //video url
+eventDate // can replace 时间: 2019.10.19-22
+eventAddress //can relplace 地点: 山东青岛 - 展位号: N3馆, J01
 ```
-
 * branches are
 
 ```
@@ -103,7 +105,6 @@ npm install
 ```
 
 
-
 > Run app server's
 
 
@@ -116,12 +117,72 @@ Front end will be on [Localhost port 8080](http://localhost:8080/)
 ```
 server
 
-node app.js
+node ./bin/www
 ```
+
+> Using [Nodemon](https://www.npmjs.com/package/nodemon)
+
+```
+nodemon start
+```
+
 
 Back end will be on [Localhost port 8081](http://localhost:8081/)
 
 
 
+### Build front end.
 
+> in Front end repository every thing is managed by vue.config.js and will handle everything by onw, all we just need to change one line of code.
+
+
+```
+/cmefapp
+    /frontend
+        /src
+            /plugins
+                    /API.js
+```
+
+in this file we have to update the server link and as we use same folder for both front and backend it will use following url's
+
+> for live server
+
+```
+    baseURL:'/'
+```
+
+> for local testing
+
+```
+        baseURL:'http://localhost:8081/'
+```
+
+* one base url must be commited out
+
+
+
+> Build front end
+
+
+``` npm run build ```
+
+this will auto generate a static site into `/server/public/` folder and you can test it using [Server port] (http://localhost:8081)
+
+> Update git remote frontend.
+
+```
+git status
+git add .
+git commit -am "changes bla bla"
+git push
+
+```
+
+> Update git remote server. (one liner)
+
+`git add . && git commit -a -m "server" && git push`
+
+
+Thanks
 
