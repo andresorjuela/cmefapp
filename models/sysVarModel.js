@@ -13,12 +13,22 @@ const varSchema = new Schema({
     },
     value: {
     },
-    isBoolean: {
-        type: Boolean,
-        required: true,
-        default: false
+    type: {
+        type: String,
+        required: true
     }
 })
+
+varSchema.methods.toJSON = function(){
+    let variable = this
+    let varObj = variable.toObject()
+    if(varObj.type == 'boolean'){
+        varObj.value = Boolean(varObj.value)
+    }
+    delete varObj.__v
+    delete varObj.createdOn
+    return varObj
+}
 
 const varModel = mongoose.model('variable', varSchema)
 

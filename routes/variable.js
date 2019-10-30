@@ -7,6 +7,7 @@ router.get('/', function (req, res, next) {
         if (err) {
             res.json(err)
         } else {
+            console.log(vars)
             res.json({
                 status: 200,
                 data: vars
@@ -16,12 +17,17 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/add', function (req, res, next) {
-    if (!req.body.varName) {
+    if (!req.body.varName || !req.body.type) {
         res.json({
             status: 1000,
             message: 'Invalid parameters'
         })
-    } else {
+    } else if(req.body.type.toLowerCase() != "string"  && req.body.type.toLowerCase() != "boolean"){
+        res.json({
+            status: 1031,
+            message: 'Invalid type'
+        })
+    }else{
         variableCollection.findOne({ name: req.body.varName }, function (err, record) {
             if (err) {
                 res.json(err)
@@ -36,7 +42,7 @@ router.post('/add', function (req, res, next) {
                         createdOn: Date.now(),
                         name: req.body.varName,
                         value: req.body.value,
-                        isBoolean: true
+                        type: req.body.type.toLowerCase()
                     })
                     new_var.save().then((newVar) => {
                         res.json({
@@ -100,35 +106,23 @@ router.post('/byName', function (req, res, next) {
         })
     }
 })
-router.post('/toggleType', function (req, res, next) {
-    if (!req.body.name) {
+
+
+router.post('/delete' , function(req , res , next){
+    if(!req.body.id){
+      res.json({
+        status: 1000,
+        message: 'Invalid parameters'
+      })
+    }else{
+        variableCollection.findByIdAndRemove({_id: req.body.id} , function(err){
+        if(err) throw err;
         res.json({
-            status: 1000,
-            message: 'Invalid parameters'
+          status: 200,
+          message: `Request Deleted`
         })
-    } else {
-        variableCollection.findOne({ name: req.body.name }, function (err, record) {
-            if (err) {
-                res.json(err)
-            } else {
-                if (!record) {
-                    res.json({
-                        status: 1002,
-                        message: `variable not found`,
-                    })
-                } else {
-                    record.isBoolean = req.body.isBoolean
-                    record.save().then(sysVar => {
-                        res.json({
-                            status: 200,
-                            message: 'variable Updated'
-                        })
-                    }).catch(err => {
-                        res.json(err)
-                    })
-                }
-            }
-        })
+      })
     }
-})
+  })
+  
 module.exports = router;
