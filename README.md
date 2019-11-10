@@ -44,6 +44,13 @@ cmef_andres //....
 
 ### Making App work Locally
 
+> Running APP will need following
+
+
+* MongoDB
+* Server (Node JS)
+* Frontend (Vue JS)
+
 
 > Mongodb should be up on  `27017` `port which is mostly the default port on all systems, if any changes you can update 
 
@@ -74,20 +81,20 @@ mkdir cmefapp
 
 `git clone <url> --branch <branch name> --single-branch <folder-name>`
 
-> Clone frontend.
-
-`git clone https://github.com/andresorjuela/cmefapp.git --branch frontend --single-branch frontend`
-
 > Clone server.
 
 `git clone https://github.com/andresorjuela/cmefapp.git --branch server --single-branch server`
+
+> Clone frontend.
+
+`git clone https://github.com/andresorjuela/cmefapp.git --branch frontend --single-branch frontend`
 
 > folder should look like this
 
 ```
 /cmefapp
-    /frontend
     /server
+    /frontend
 ```
 
 
@@ -95,11 +102,11 @@ mkdir cmefapp
 //use terminal two tabs or windows to handle both front end backend
 
 ```
-cd frontend
+cd server
 
 npm install
 
-cd server
+cd frontend
 
 npm install
 ```
@@ -107,13 +114,6 @@ npm install
 
 > Run app server's
 
-
-```
-frontend
-
-npm run start
-```
-Front end will be on [Localhost port 8080](http://localhost:8080/)
 ```
 server
 
@@ -131,10 +131,20 @@ Back end will be on [Localhost port 8081](http://localhost:8081/)
 
 
 
+```
+frontend
+
+npm run start
+```
+Front end will be on [Localhost port 8080](http://localhost:8080/)
+
+
 ### Build front end.
 
 > in Front end repository every thing is managed by vue.config.js and will handle everything by onw, all we just need to change one line of code.
 
+
+* To make things all the javascript functions are written very clearly and plain javascript so if anyone trying to change, please keep it as simple as possible.
 
 ```
 /cmefapp
