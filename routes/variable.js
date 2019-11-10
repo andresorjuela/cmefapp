@@ -7,7 +7,6 @@ router.get('/', function (req, res, next) {
         if (err) {
             res.json(err)
         } else {
-            console.log(vars)
             res.json({
                 status: 200,
                 data: vars
@@ -80,6 +79,7 @@ router.post('/update', function (req, res, next) {
         })
     }
 })
+
 router.post('/byName', function (req, res, next) {
     if (!req.body.varName) {
         res.json({

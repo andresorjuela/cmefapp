@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.1eda4c3bb9af5c015550df525cb7abed.js"
+  "/precache-manifest.5046e2f0be9159d72bdfed3274ece397.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "cmefapp"});

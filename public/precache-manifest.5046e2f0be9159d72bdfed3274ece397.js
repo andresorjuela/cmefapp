@@ -36,6 +36,10 @@ self.__precacheManifest = [
     "url": "/img/IBP.6c175a6b.jpg"
   },
   {
+    "revision": "4f3c7d9f13e244eb9374fe2cd4294413",
+    "url": "/img/medica_logo.4f3c7d9f.jpg"
+  },
+  {
     "revision": "6d49ce5897f08c50e67ea4c4343e2d63",
     "url": "/img/EKG.6d49ce58.jpg"
   },
@@ -45,15 +49,15 @@ self.__precacheManifest = [
   },
   {
     "revision": "db39caa423524b787b12b78bdc7cd31a",
-    "url": "/img/VET.db39caa4.jpg"
+    "url": "/img/Vet.db39caa4.jpg"
   },
   {
     "revision": "d2af4f003c01703cc2fd8a50e2b17348",
     "url": "/img/Temperature.d2af4f00.jpg"
   },
   {
-    "revision": "8bcced963f3b5ca90745",
-    "url": "/js/app.a491f95f.js"
+    "revision": "c50e4f7908c2f9327ffc",
+    "url": "/js/app.4951519f.js"
   },
   {
     "revision": "0e0e440f37010a9f6ad8133d1028048a",
@@ -68,11 +72,15 @@ self.__precacheManifest = [
     "url": "/img/EtCO2.852cfecb.jpg"
   },
   {
+    "revision": "49d4041b8e7e375f3e2950a9738bc59b",
+    "url": "/img/pdf.49d4041b.png"
+  },
+  {
     "revision": "b1dbc9c4a037fd5b4396c858f05f15e2",
     "url": "/img/NIBP.b1dbc9c4.jpg"
   },
   {
-    "revision": "e7a47b29c2937074a155438e4b9c149e",
+    "revision": "336ebdf60f497dfb7efe73e3d0ad9627",
     "url": "/index.html"
   },
   {
@@ -100,7 +108,7 @@ self.__precacheManifest = [
     "url": "/fonts/ionicons.143146fa.woff2"
   },
   {
-    "revision": "8bcced963f3b5ca90745",
-    "url": "/css/app.be37155d.css"
+    "revision": "c50e4f7908c2f9327ffc",
+    "url": "/css/app.231d2c40.css"
   }
 ];
