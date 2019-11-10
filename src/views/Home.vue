@@ -3,7 +3,7 @@
     <div v-if="showHome" class="home">
       <div class="logos--row">
         <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo" />
-        <img src="@/assets/images/CMEF_logo.jpg" class="cmef--logo" />
+        <img src="@/assets/images/medica_logo.jpg" class="cmef--logo" />
       </div>
       <div class="content">
         <h2>{{eventDate}}</h2>
@@ -12,39 +12,44 @@
       <div class="btn--content">
         <div class="btn" v-if="showVideo">
           <Button type="warning" long @click="showVideoModel">
-            <h1 class="btnTitle">企业视频</h1>
+            <h1 class="btnTitle">Video about Orantech</h1>
           </Button>
         </div>
         <div class="btn">
           <Button type="warning" long to="/Products">
-            <h1 class="btnTitle">产品一览</h1>
+            <h1 class="btnTitle">Products Overview</h1>
           </Button>
         </div>
         <div class="btn">
           <Button type="warning" long to="/Events">
-            <h1 class="btnTitle">现场活动</h1>
+            <h1 class="btnTitle">Events at Orantech</h1>
           </Button>
         </div>
         <div class="btn">
           <Button type="warning" long to="/Appointment">
-            <h1 class="btnTitle">预约洽谈</h1>
+            <h1 class="btnTitle">Make Appointment</h1>
           </Button>
         </div>
       </div>
       <div class="content">
-        <h3>美橙医疗-橙汇科技中国区唯一战略合作伙伴</h3>
+        <h3>Medten-Orantech's only strategic partner in China</h3>
       </div>
       <Card class="card" style="background-color: #47C2D1; color: #fff">
         <div class="reqText">
-          <h2>有兴趣成为我们的经销商吗?</h2>
+          <h2>Interested in being a distributor?</h2>
         </div>
         <Tabs type="card" value="name1" @on-click="tabChanged()">
-          <TabPane label="电话" name="name1">
+          <TabPane label="Mobile phone" name="name1">
             <div v-if="showPhoneErr">
-              <Alert type="error">无效的手机号码</Alert>
+              <Alert type="error">Invalid Mobile Number</Alert>
             </div>
             <div class="row">
-              <Input v-model="phone" size="large" type="number" placeholder="请留下您的手机号" />
+              <Input
+                v-model="phone"
+                size="large"
+                type="number"
+                placeholder="Type your mobile phone"
+              />
               <!-- <Select
                   slot="prepend"
                   v-model="countryCode"
@@ -56,30 +61,26 @@
               </Input>-->
               <div style="margin-left: 2vw;">
                 <Button type="warning" size="large" @click="submitPhoneRequest">
-                  <b class="btnTitle">提交</b>
+                  <b class="btnTitle">Submit</b>
                 </Button>
               </div>
             </div>
           </TabPane>
-          <TabPane label="邮件" name="name2">
+          <TabPane label="Email" name="name2">
             <div v-if="showEmailErr">
-              <Alert type="error">无效的电子邮箱</Alert>
+              <Alert type="error">Invalid Email</Alert>
             </div>
             <div class="row">
-              <Input v-model="email" type="email" placeholder="请填写您的邮箱信息" />
+              <Input v-model="email" type="email" placeholder="Type your email" />
               <div style="margin-left: 2vw;">
                 <Button type="warning" size="large" @click="submitEmailRequest">
-                  <b class="btnTitle">提交</b>
+                  <b class="btnTitle">Submit</b>
                 </Button>
               </div>
             </div>
           </TabPane>
         </Tabs>
       </Card>
-      <div class="bottom-logos--row">
-        <img src="@/assets/images/Medten_logo.jpg" class="Medten--logo" />
-        <img src="@/assets/images/Medten-QR-Wechat.jpg" class="qr--code" />
-      </div>
     </div>
     <div v-if="!showHome" style="padding: 10px;background: #f8f8f9">
       <Card title="Options" icon="ios-options" :padding="0" shadow>
@@ -95,18 +96,20 @@
     <Modal v-model="confirmModel" class-name="vertical-center-modal" close>
       <p slot="header" style="color:green;text-align:center">
         <Icon type="ios-checkmark-circle" color="green" />
-        <span style="margin-left: 2vw;">请求已接收</span>
+        <span style="margin-left: 2vw;">Request Received</span>
       </p>
       <div style="text-align:center">
-        <h4 class="success--message">已收到您的联系方式。稍微会有橙汇的工作人员联系您。</h4>
+        <h4
+          class="success--message"
+        >Your contacts has been received. Someone from Orantech will reach to you soon.</h4>
       </div>
       <div slot="footer" />
     </Modal>
     <Modal
       v-model="videoModel"
-      title=" 橙汇科技-监护电缆与附件的专业制造商"
+      title="Orantech - Manufacturer of Patient Monitor Accessories and Parts"
       cancel-text=" "
-      ok-text="关"
+      ok-text="Close"
       @on-ok="videoModel = false"
       @on-cancel="videoModel = false"
     >
@@ -280,8 +283,8 @@ export default {
 }
 
 .cmef--logo {
-  width: 40%;
-  height: 100%;
+  width: 100px;
+  height: 99px;
 }
 
 .content {

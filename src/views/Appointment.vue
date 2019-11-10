@@ -2,15 +2,15 @@
   <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-      <h3 class="pageTitle">2019秋CMEF青岛预约洽谈登记</h3>
+      <h3 class="pageTitle">MEDICA 2019 - Meeting with Orantech Reservation Form</h3>
     </div>
     <div class="content" v-if="canBookAppointment">
       <Card class="card" style="margin-top: 1vh;">
         <div>
-          <h4>请选择日期</h4>
+          <h4>Pick up a day</h4>
           <Select
             v-model="date"
-            placeholder="时间"
+            placeholder="Date"
             prefix="ios-calendar-outline"
             style="width:100%; margin-top: 1vh;"
           >
@@ -25,10 +25,10 @@
       </Card>
       <Card class="card" style="margin-top: 2vh;">
         <div>
-          <h4>请选择时间</h4>
+          <h4>Pick up a time</h4>
           <Select
             v-model="timeId"
-            placeholder="时间"
+            placeholder="Time"
             prefix="ios-time-outline"
             style="width:100%; margin-top: 1vh;"
           >
@@ -43,19 +43,25 @@
       </Card>
       <Card class="card" style="margin-top: 2vh;">
         <div style="margin-top: 1vh">
-          <Input v-model="fname" prefix="ios-contact" placeholder="姓" size="large" />
+          <Input v-model="fname" prefix="ios-contact" placeholder="First Name" size="large" />
         </div>
         <div style="margin-top: 1vh">
-          <Input v-model="lname" prefix="ios-contact" placeholder="名" size="large" />
+          <Input v-model="lname" prefix="ios-contact" placeholder="Last Name" size="large" />
         </div>
         <div style="margin-top: 1vh">
-          <Input v-model="contact" prefix="ios-mail" placeholder="邮箱/手机号" size="large" />
+          <Input
+            v-model="contact"
+            prefix="ios-mail"
+            placeholder="Email/mobile number"
+            size="large"
+          />
         </div>
         <p
-          class="info">如果您提交的是您的电子邮箱，我们会通过电子邮箱联系您。如果您提交的您的手机号，我们会通过短信联系您。</p>
+          class="info"
+        >If you submitted your email we will contact you via email, if you submit your mobile phone we will contact you through a text message.</p>
         <div style="margin-top: 1vh">
           <Button type="success" long @click="confimBooking">
-            <b>预约</b>
+            <b>Make booking</b>
           </Button>
         </div>
       </Card>
@@ -63,28 +69,28 @@
     <div class="content" v-if="!canBookAppointment">
       <Alert
         type="warning"
-      >所有的预约时段都已订满，我们没有空余的预约时段。</Alert>
+      >All available slots are fully booked and we do not have a free appointment period.</Alert>
     </div>
     <Modal v-model="bookingModel" class-name="vertical-center-modal">
       <p slot="header" style="color:green;text-align:center">
         <Icon type="ios-checkmark-circle" color="green" />
-        <span style="margin-left: 2vw;">预定已接收</span>
+        <span style="margin-left: 2vw;">Booking Received</span>
       </p>
       <div>
         <h3
           class="success--message"
-        >您已经预定成功！稍后会有我们公司的专员联系您</h3>
+        >You have made an appointment. Someone from Orantech will reach out you soon.</h3>
         <CellGroup>
           <Cell>
-          <b>预约细节</b>
+            <b>Appointment Info</b>
           </Cell>
-          <Cell title="邮箱/手机号" :extra="contact" />
-          <Cell title="日期" :extra="date" />
-          <Cell title="时间" :extra="time" />
+          <Cell title="Email/mobile number" :extra="contact" />
+          <Cell title="Date" :extra="date" />
+          <Cell title="Time" :extra="time" />
         </CellGroup>
       </div>
       <div slot="footer">
-        <Button type="error" size="large" @click="goBack()">谢谢</Button>
+        <Button type="error" size="large" @click="goBack()">Close</Button>
       </div>
     </Modal>
   </section>
@@ -123,16 +129,16 @@ export default {
     },
     confimBooking() {
       const that = this
-       if (!that.date || that.date == '') {
-        this.$Message.error('日期（必填）')
-      } else  if (!that.time || that.time == '') {
-        this.$Message.error('时间（必填)')
-      } else  if (!that.fname || that.fname == '') {
-        this.$Message.error('名 （必填）')
+      if (!that.date || that.date == '') {
+        this.$Message.error('Date required')
+      } else if (!that.time || that.time == '') {
+        this.$Message.error('Time required')
+      } else if (!that.fname || that.fname == '') {
+        this.$Message.error('First Name required')
       } else if (!that.lname || that.lname == '') {
-        this.$Message.error('姓 （必填）')
+        this.$Message.error('Last Name required')
       } else if (!that.contact || that.contact == '') {
-        this.$Message.error('联系方式 （必填）')
+        this.$Message.error('Contact required')
       } else {
         let data = {
           fname: that.fname,

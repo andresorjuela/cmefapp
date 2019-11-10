@@ -2,7 +2,7 @@
   <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-      <h3 class="pageTitle">2019秋CMEF青岛展活动：N3馆，J01</h3>
+      <h3 class="pageTitle">Orantech at Booth: 12F15 - 2019 MEDICA Dusseldorf, Germany</h3>
     </div>
     <div class="content" v-if="eventList.length > 0">
       <Row v-for="(event , index) in eventList" :key="index">
@@ -26,7 +26,7 @@
       </Row>
     </div>
     <div class="content" v-if="eventList.length  == 0">
-      <Alert type="warning">无活动事件</Alert>
+      <Alert type="warning">No Active Events</Alert>
     </div>
   </section>
 </template>
@@ -85,7 +85,7 @@ export default {
   align-items: center;
   border-bottom: 1px solid gray;
 }
-.rowEvent{
+.rowEvent {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
