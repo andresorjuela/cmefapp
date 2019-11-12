@@ -228,7 +228,7 @@ export default {
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  padding: 3% 5% 3% 5%;
+  padding: 4% 5% 4% 5%;
   border-bottom: 1px solid gray;
 }
 

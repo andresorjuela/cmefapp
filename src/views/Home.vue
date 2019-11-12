@@ -4,7 +4,7 @@
       <div class="logos--row">
         <img src="@/assets/images/LandingPage_top_logo.gif" alt="CEMEF Logo" />
         <!-- <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo" />
-        <img src="@/assets/images/medica_logo.jpg" class="cmef--logo" /> -->
+        <img src="@/assets/images/medica_logo.jpg" class="cmef--logo" />-->
       </div>
       <div class="content">
         <h1>{{eventDate}}</h1>
@@ -109,9 +109,13 @@
     >
       <video controls width="100%" :src="videoUrl"></video>
 
-        <div slot="footer">
-            <Button  size="large" style="background-color: gray; color: black;" @click="videoModel = false">close</Button>
-        </div>
+      <div slot="footer">
+        <Button
+          size="large"
+          style="background-color: gray; color: black;"
+          @click="videoModel = false"
+        >close</Button>
+      </div>
     </Modal>
   </section>
 </template>
@@ -361,7 +365,7 @@ export default {
   text-align: center;
   padding: 1px 1px 2vh 1px;
 }
-.ivu-btn-primary{
+.ivu-btn-primary {
   background-color: red;
 }
 </style>

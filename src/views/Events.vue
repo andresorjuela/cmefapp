@@ -81,7 +81,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  padding: 3% 5% 3% 5%;
+  padding: 4% 5% 4% 5%;
   align-items: center;
   border-bottom: 1px solid gray;
 }
