@@ -2,17 +2,18 @@
   <section>
     <div v-if="showHome" class="home">
       <div class="logos--row">
-        <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo" />
-        <img src="@/assets/images/medica_logo.jpg" class="cmef--logo" />
+        <img src="@/assets/images/LandingPage_top_logo.gif" alt="CEMEF Logo" />
+        <!-- <img src="@/assets/images/Orantech_Logo.gif" class="orantect--logo" />
+        <img src="@/assets/images/medica_logo.jpg" class="cmef--logo" /> -->
       </div>
       <div class="content">
-        <h2>{{eventDate}}</h2>
-        <h2>{{eventAddress}}</h2>
+        <h1>{{eventDate}}</h1>
+        <h1>{{eventAddress}}</h1>
       </div>
       <div class="btn--content">
         <div class="btn" v-if="showVideo">
           <Button type="warning" long @click="showVideoModel">
-            <h1 class="btnTitle">Video about Orantech</h1>
+            <h1 class="btnTitle">About Orantech</h1>
           </Button>
         </div>
         <div class="btn">
@@ -22,7 +23,7 @@
         </div>
         <div class="btn">
           <Button type="warning" long to="/Events">
-            <h1 class="btnTitle">Events at Orantech</h1>
+            <h1 class="btnTitle">Events and News</h1>
           </Button>
         </div>
         <div class="btn">
@@ -31,10 +32,7 @@
           </Button>
         </div>
       </div>
-      <div class="content">
-        <h3>Medten-Orantech's only strategic partner in China</h3>
-      </div>
-      <Card class="card" style="background-color: #47C2D1; color: #fff">
+      <Card class="card" style="background-color: #C5CCC5; color: #fff">
         <div class="reqText">
           <h2>Interested in being a distributor?</h2>
         </div>
@@ -108,12 +106,12 @@
     <Modal
       v-model="videoModel"
       title="Orantech - Manufacturer of Patient Monitor Accessories and Parts"
-      cancel-text=" "
-      ok-text="Close"
-      @on-ok="videoModel = false"
-      @on-cancel="videoModel = false"
     >
       <video controls width="100%" :src="videoUrl"></video>
+
+        <div slot="footer">
+            <Button  size="large" style="background-color: gray; color: black;" @click="videoModel = false">close</Button>
+        </div>
     </Modal>
   </section>
 </template>
@@ -353,7 +351,8 @@ export default {
   justify-content: space-between;
 }
 .btnTitle {
-  color: #6f6f6f;
+  color: #000;
+  padding: 1vh 1px 1vh 1px;
 }
 .ivu-tabs-nav {
   color: #fff;
@@ -361,5 +360,8 @@ export default {
 .reqText {
   text-align: center;
   padding: 1px 1px 2vh 1px;
+}
+.ivu-btn-primary{
+  background-color: red;
 }
 </style>

@@ -2,7 +2,7 @@
   <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-      <h3 class="pageTitle">MEDICA 2019 - Meeting with Orantech Reservation Form</h3>
+      <h3 class="pageTitle">Meeting during MEDICA Reservation Form</h3>
     </div>
     <div class="content" v-if="canBookAppointment">
       <Card class="card" style="margin-top: 1vh;">
@@ -60,7 +60,7 @@
           class="info"
         >If you submitted your email we will contact you via email, if you submit your mobile phone we will contact you through a text message.</p>
         <div style="margin-top: 1vh">
-          <Button type="success" long @click="confimBooking">
+          <Button class="makeBtn" long @click="confimBooking">
             <b>Make booking</b>
           </Button>
         </div>
@@ -273,5 +273,10 @@ export default {
 .pageTitle {
   width: 100%;
   text-align: center;
+}
+.makeBtn {
+  background-color: gray;
+  color: #fff;
+  font-size: 16px;
 }
 </style>

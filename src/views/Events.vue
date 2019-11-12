@@ -2,7 +2,7 @@
   <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-      <h3 class="pageTitle">Orantech at Booth: 12F15 - 2019 MEDICA Dusseldorf, Germany</h3>
+      <h2 class="pageTitle">Booth: 12F15 - MEDICA 2019</h2>
     </div>
     <div class="content" v-if="eventList.length > 0">
       <Row v-for="(event , index) in eventList" :key="index">

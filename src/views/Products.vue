@@ -2,7 +2,7 @@
   <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-      <h3 class="pageTitle">Compatibility monitor cable and sensor</h3>
+      <h2 class="pageTitle">Patient Monitor Cables and Sensors</h2>
     </div>
     <a
       href="https://ot-product-image.oss-cn-shenzhen.aliyuncs.com/catalogue/OT_brochure_EN.pdf?nsukey=wWibDeWtqeqdVHm%2F34JXp%2BFSp577KV%2Fh2I94BQ6xAi7JGSgzE85PJUj44YpXDD%2F7WJhSe%2BVQzdNB3XV5XoPf8ClSZl17c66MbN%2FtJzcFCJVOLEkWCginL5c8M4y5sm4ft4lJP8%2B7PsvE6oNGcufwjZ%2FTqJSyklyI2iQ3nwr%2FWs7GIX207D5hcU9juXANYE8sfYbEirr9EptRfQL2CaEeaA%3D%3D"
