@@ -75,12 +75,11 @@ export default {
         {
           name: 'Repair Parts',
           pic: require('./../assets/images/Repair_Parts.jpg')
+        },
+        {
+          name: 'Vet',
+          pic: require('./../assets/images/VET.jpg')
         }
-        // ,
-        // {
-        //   name: 'Vet',
-        //   pic: require('./../assets/images/VET.jpg')
-        // }
       ]
     }
   },
