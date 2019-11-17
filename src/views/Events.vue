@@ -2,7 +2,7 @@
   <section class="home">
     <div class="row">
       <Icon type="md-arrow-round-back" size="24" @click="goBack()" />
-      <h2 class="pageTitle">Booth: 12F15 - MEDICA 2019</h2>
+      <h2 class="pageTitle">MEDICA Hall 12, Booth F15</h2>
     </div>
     <div class="content" v-if="eventList.length > 0">
       <Row v-for="(event , index) in eventList" :key="index">

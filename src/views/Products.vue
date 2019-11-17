@@ -17,9 +17,20 @@
     </a>
     <Card class="card" style="margin-top: 0.5vh;">
       <div class="products">
-        <div v-for="(item , index) in products" :key="index" class="product">
+        <div
+          v-for="(item , index) in products"
+          :key="index"
+          class="product"
+          @click="viewItemPdf(item)"
+        >
           <img :src="item.pic" class="product--logo" />
-          <h4>{{ item.name }}</h4>
+          <div class="row_SB" v-if="item.pdf">
+            <img src="@/assets/images/pdf.png" class="icon" />
+            <h3>{{ item.name }}</h3>
+          </div>
+          <div v-if="!item.pdf">
+            <h3>{{ item.name }}</h3>
+          </div>
         </div>
       </div>
     </Card>
@@ -46,7 +57,9 @@ export default {
         },
         {
           name: 'Temperature',
-          pic: require('./../assets/images/Temperature.jpg')
+          pic: require('./../assets/images/Temperature.jpg'),
+          pdf:
+            'https://ot-product-image.oss-cn-shenzhen.aliyuncs.com/catalogue/Turbo_Temperature_Probes.pdf'
         },
         {
           name: 'EKG',
@@ -58,15 +71,21 @@ export default {
         },
         {
           name: 'Fetal',
-          pic: require('./../assets/images/Fetal.jpg')
+          pic: require('./../assets/images/Fetal.jpg'),
+          pdf:
+            'https://ot-product-image.oss-cn-shenzhen.aliyuncs.com/catalogue/Fetal_Transducers.pdf'
         },
         {
           name: 'O2',
-          pic: require('./../assets/images/O2.jpg')
+          pic: require('./../assets/images/O2.jpg'),
+          pdf:
+            'https://ot-product-image.oss-cn-shenzhen.aliyuncs.com/catalogue/Oxygen_sensors.pdf'
         },
         {
           name: 'EtCO2',
-          pic: require('./../assets/images/EtCO2.jpg')
+          pic: require('./../assets/images/EtCO2.jpg'),
+          pdf:
+            'https://ot-product-image.oss-cn-shenzhen.aliyuncs.com/catalogue/EtCO2_Sensors.pdf'
         },
         {
           name: 'MPC',
@@ -74,7 +93,9 @@ export default {
         },
         {
           name: 'Repair Parts',
-          pic: require('./../assets/images/Repair_Parts.jpg')
+          pic: require('./../assets/images/Repair_Parts.jpg'),
+          pdf:
+            'https://ot-product-image.oss-cn-shenzhen.aliyuncs.com/catalogue/repair_parts.pdf'
         },
         {
           name: 'Vet',
@@ -86,6 +107,12 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1)
+    },
+    viewItemPdf(item) {
+      if (item.pdf) {
+        window.open(item.pdf, '_blank')
+      }
+      return
     }
   }
 }

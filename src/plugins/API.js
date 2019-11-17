@@ -4,7 +4,7 @@ export default () => {
 
     /*             if you builing live site the please uncommnet the following              */
 
-    baseURL:'/'
+    baseURL: '/'
 
     /*             API base URL for testing locally              */
 
