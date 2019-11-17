@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/img/Spo2.0e0e440f.jpg"
   },
   {
-    "revision": "7561c61a905d22ac1f4b6822ab43b104",
+    "revision": "b91ab177d20153cde41f4b19f811f7bd",
     "url": "/index.html"
   },
   {
@@ -36,8 +36,8 @@ self.__precacheManifest = [
     "url": "/img/pdf.49d4041b.png"
   },
   {
-    "revision": "6852d5bd30aaf9af67a0",
-    "url": "/js/app.4212cda4.js"
+    "revision": "88d65cb3b5c4b0279db1",
+    "url": "/js/app.e8349ef6.js"
   },
   {
     "revision": "d2af4f003c01703cc2fd8a50e2b17348",
@@ -56,8 +56,8 @@ self.__precacheManifest = [
     "url": "/img/Repair_Parts.5614c21a.jpg"
   },
   {
-    "revision": "d535a25a79fb1365ae814b61e88fae71",
-    "url": "/fonts/ionicons.d535a25a.ttf"
+    "revision": "99ac3308dd8ee14f749f51538d0d5b9e",
+    "url": "/fonts/ionicons.99ac3308.woff"
   },
   {
     "revision": "6c175a6be732ca772fdf7b11577946e5",
@@ -104,11 +104,11 @@ self.__precacheManifest = [
     "url": "/img/CMEF_logo.a726b98d.jpg"
   },
   {
-    "revision": "99ac3308dd8ee14f749f51538d0d5b9e",
-    "url": "/fonts/ionicons.99ac3308.woff"
+    "revision": "d535a25a79fb1365ae814b61e88fae71",
+    "url": "/fonts/ionicons.d535a25a.ttf"
   },
   {
-    "revision": "6852d5bd30aaf9af67a0",
-    "url": "/css/app.88f94663.css"
+    "revision": "88d65cb3b5c4b0279db1",
+    "url": "/css/app.b6b2100a.css"
   }
 ];
