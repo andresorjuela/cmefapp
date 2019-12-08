@@ -300,7 +300,7 @@ export default {
 
 .btn--content {
   width: 95%;
-  height: 38vh;
+  height: 36vh;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
